@@ -1,189 +1,310 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-MX">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-A-P - Catálogo de Equipos</title>
+    
+    <title>Renta de Rompedoras de Concreto en Juárez, Guadalupe, Apodaca, San Nicolás y Monterrey | G-A-P</title>
+    
+    <meta name="description" content="Renta de rompedoras de concreto (8kg a 27kg) y vibradores en Monterrey, Guadalupe, Juárez y Apodaca. Equipos de alta potencia y entrega puntual.">
+    
+    <link rel="canonical" href="https://gaprenta.github.io/renta-de-rompedoras-de-concreto-gap/" />
+
+    <link rel="icon" type="image/png" href="favicon.png">
+
     <style>
-        /* --- 1. ENCABEZADO MEJORADO Y RESPONSIVO --- */
-        header {
-            background-color: #000;
-            color: #ffcc00; /* Amarillo industrial */
-            padding: 20px;
-            border-bottom: 5px solid #ffcc00;
-            display: flex;
-            flex-direction: column; /* Apilado en móvil */
-            align-items: center;
-            text-align: center;
-            font-family: 'Arial Black', sans-serif;
-            width: 100%;
-            box-sizing: border-box;
+        /* PALETA DE COLORES: Amarillo CAT (#FFCD00), Negro (#000000), Azul Industrial (#002752) */
+        body { font-family: 'Arial Black', sans-serif; margin: 0; padding: 0; background: #fff; color: #000; }
+        
+        header { 
+            background: #FFCD00; 
+            text-align: center; 
+            padding: 0; 
+            border-bottom: 8px solid #002752; 
         }
-
-        .logo-area h1 {
+        .header-logo-img {
+            width: 100%; 
+            height: auto; 
+            max-height: 250px; 
+            object-fit: cover; 
+            display: block;
             margin: 0;
-            font-size: 2.5rem;
-            letter-spacing: 2px;
         }
 
-        .header-tagline {
-            color: #fff;
-            font-size: 1rem;
-            margin-top: 5px;
-            font-family: Arial, sans-serif;
-            text-transform: uppercase;
-        }
+        .nosotros { background: #002752; color: #fff; padding: 50px 20px; text-align: center; }
+        .nosotros h2 { color: #FFCD00; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; font-size: 28px; }
+        .nosotros p { max-width: 850px; margin: 0 auto; line-height: 1.6; font-size: 19px; font-family: 'Arial', sans-serif; font-weight: bold; }
 
-        /* Ajuste para Computadora */
-        @media (min-width: 768px) {
-            header {
-                flex-direction: row; /* Horizontal en PC */
-                justify-content: space-between;
-                padding: 20px 60px;
-                text-align: left;
-            }
-            .header-tagline {
-                margin-top: 0;
-                text-align: right;
-            }
-        }
+        .marcas-container { background: #fff; padding: 30px 20px; text-align: center; border-bottom: 5px solid #FFCD00; }
+        .marcas-grid { display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap; max-width: 1000px; margin: 0 auto; }
+        .marca-logo { font-family: 'Arial', sans-serif; font-size: 35px; font-weight: bold; text-transform: uppercase; letter-spacing: -1px; }
+        .logo-makita { color: #CC0000; }
+        .logo-dewalt { color: #FEB81C; text-shadow: 1px 1px 0 #000; }
+        .logo-bosch  { color: #DA291C; }
+        .logo-edoevom { color: #D2051E; }
 
-        /* --- 2. GRID Y CARDS --- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
+        .distintivo-gap { background: #f4f4f4; padding: 40px 20px; text-align: center; border-bottom: 2px solid #002752; }
+        .distintivo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
+        .valor-box { padding: 20px; }
+        .valor-box h3 { color: #002752; text-transform: uppercase; font-size: 1.2em; margin-bottom: 10px; border-bottom: 3px solid #FFCD00; display: inline-block; }
+        .valor-box p { font-family: 'Arial', sans-serif; font-size: 0.95em; color: #444; }
 
-        .card {
-            background: #fff;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
+        .seccion-equipos { padding: 60px 20px; max-width: 1300px; margin: 0 auto; }
+        .titulo-seccion { text-align: center; margin-bottom: 50px; text-transform: uppercase; font-size: 32px; border-left: 10px solid #FFCD00; border-right: 10px solid #002752; padding: 0 15px; display: inline-block; color: #002752; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
+        .card { border: 4px solid #002752; background: #fff; position: relative; transition: 0.3s; display: flex; flex-direction: column; overflow: hidden; }
+        .card:hover { border-color: #FFCD00; box-shadow: 0 10px 30px rgba(0,39,82,0.3); transform: translateY(-8px); }
+        
+        .card-img { width: 100%; height: 280px; object-fit: contain; border-bottom: 4px solid #FFCD00; background: #fdfdfd; }
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
+        .card-header-vibrador { background: #002752; color: #FFCD00; padding: 20px; text-align: center; border-bottom: 5px solid #FFCD00; }
+        .card-header-vibrador .modelo-txt { font-weight: 900; font-size: 1.3em; text-transform: uppercase; }
 
-        .card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            cursor: pointer; /* Indica que se puede hacer clic */
-            display: block;
-        }
+        .card-header-kg { background: #333; color: #FFCD00; padding: 20px; text-align: center; border-bottom: 5px solid #002752; }
+        .card-header-kg .modelo-txt { display: block; font-size: 1.3em; font-weight: 900; text-transform: uppercase; }
+        
+        .card-specs-bar { background: #FFCD00; color: #002752; padding: 12px; text-align: center; font-weight: 900; font-size: 1.1em; border-bottom: 3px solid #002752; }
+        .card-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; font-family: 'Arial', sans-serif; }
+        
+        .ideal-list { list-style: none; padding: 0; margin: 15px 0 25px 0; font-size: 0.95em; color: #000; flex-grow: 1; font-weight: bold; }
+        .ideal-list li { margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; }
+        .icon-usage { color: #fff; background: #002752; padding: 2px 8px; border-radius: 3px; font-weight: bold; font-size: 0.8em; }
+        .icon-usage-v { color: #000; background: #FFCD00; padding: 2px 8px; border-radius: 3px; font-weight: bold; font-size: 0.8em; }
+        
+        .btn-rentar { display: block; background: #002752; color: #FFCD00; text-align: center; padding: 18px; text-decoration: none; font-weight: 900; text-transform: uppercase; font-size: 1.1em; transition: 0.3s; border: none; cursor: pointer; }
+        .btn-rentar:hover { background: #FFCD00; color: #002752; }
 
-        /* --- 3. EFECTO DE RESALTADO (LIGHTBOX) --- */
-        .overlay-resaltado {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.92);
-            display: none; /* Oculto por defecto */
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            cursor: zoom-out;
-            padding: 20px;
-        }
+        .footer-info { background: #000; color: #fff; padding: 60px 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; text-align: center; border-top: 8px solid #002752; }
+        .info-box h4 { border-bottom: 4px solid #FFCD00; color: #FFCD00; display: inline-block; padding-bottom: 8px; text-transform: uppercase; font-size: 22px; margin-bottom: 20px; }
+        .info-box p { font-family: 'Arial', sans-serif; margin: 12px 0; font-size: 18px; font-weight: bold; }
+        .horario-domingo { color: #FFCD00; }
 
-        .overlay-resaltado img {
-            max-width: 95%;
-            max-height: 85%;
-            border: 4px solid #ffcc00;
-            border-radius: 8px;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
-            animation: zoomIn 0.3s ease;
-        }
-
-        @keyframes zoomIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .no-scroll { overflow: hidden; }
-
-        /* Estilo Botón WhatsApp */
-        .btn-ws {
-            display: block;
-            background: #25d366;
-            color: white;
-            text-align: center;
-            padding: 12px;
-            text-decoration: none;
-            font-weight: bold;
-            margin: 15px;
-            border-radius: 8px;
-        }
+        .ws-flotante { position: fixed; bottom: 25px; right: 25px; background-color: #25D366; color: #FFF; padding: 18px 30px; border-radius: 50px; text-decoration: none; font-weight: 900; font-family: 'Arial', sans-serif; box-shadow: 0 8px 20px rgba(0,0,0,0.5); z-index: 9999; display: flex; align-items: center; gap: 12px; transition: 0.3s; font-size: 18px; }
+        .ws-flotante:hover { transform: scale(1.1); background-color: #128C7E; }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo-area">
-            <h1>G-A-P</h1>
-        </div>
-        <div class="header-tagline">
-            <strong>Renta de Equipo Profesional</strong><br>
-            Servicio en todo Monterrey
+        <div class="logo-container">
+            <img src="logotipo.jpg" alt="Logo GAP" class="header-logo-img">
         </div>
     </header>
 
-    <div class="container">
-        <div class="card" data-nombre="Rompedora de Concreto">
-            <img src="URL_DE_TU_FOTO_1.jpg" alt="Equipo GAP" class="foto-clic">
-            <div style="padding: 10px;">
-                <h2 style="margin: 10px 0;">Rompedora de Concreto</h2>
-                <a href="#" class="btn-ws">Solicitar Informes</a>
+    <section class="nosotros">
+        <h2>Especialistas en Equipo Ligero</h2>
+        <p>Tu aliado estratégico en Juárez, Guadalupe, Apodaca, San Nicolás y Monterrey. Equipos de demolición y vibrado con mantenimiento garantizado.</p>
+    </section>
+
+    <section class="distintivo-gap">
+        <div class="distintivo-grid">
+            <div class="valor-box">
+                <h3>Potencia Real</h3>
+                <p>Equipos líderes que aseguran el mejor rendimiento por Joule de impacto y vibración.</p>
+            </div>
+            <div class="valor-box">
+                <h3>Cero Fallas</h3>
+                <p>Mantenimiento preventivo riguroso para evitar paros en tu construcción.</p>
+            </div>
+            <div class="valor-box">
+                <h3>Logística Local</h3>
+                <p>Entregas puntuales en toda el área metropolitana de Monterrey.</p>
+            </div>
+        </div>
+    </section>
+
+    <main class="seccion-equipos">
+        
+        <div style="text-align: center;"><h2 class="titulo-seccion">Catálogo de Rompedoras</h2></div>
+        <div class="grid" style="margin-bottom: 80px;">
+            <div class="card">
+                <div class="card-header-kg"><span class="modelo-txt">Rompedora de 8 KG</span></div>
+                <img src="8.jpg" alt="Rompedora 8kg" class="card-img">
+                <div class="card-specs-bar">720 Watts | 6 Joules</div>
+                <div class="card-body">
+                    <ul class="ideal-list">
+                        <li><span class="icon-usage">GAP</span> Orificios con broca</li>
+                        <li><span class="icon-usage">GAP</span> Ranuras en pared</li>
+                    </ul>
+                    <a href="https://wa.me/528119988053" class="btn-rentar">Rentar Equipo</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header-kg"><span class="modelo-txt">Rompedora de 12 KG</span></div>
+                <img src="12.jpg" alt="Rompedora 12kg" class="card-img">
+                <div class="card-specs-bar">960 Watts | 12 Joules</div>
+                <div class="card-body">
+                    <ul class="ideal-list">
+                        <li><span class="icon-usage">GAP</span> Quitar vitropiso</li>
+                        <li><span class="icon-usage">GAP</span> Demolición media</li>
+                    </ul>
+                    <a href="https://wa.me/528119988053" class="btn-rentar">Rentar Equipo</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header-kg"><span class="modelo-txt">Rompedora de 15 KG</span></div>
+                <img src="15.jpg" alt="Rompedora 15kg" class="card-img">
+                <div class="card-specs-bar">1200 Watts | 25 Joules</div>
+                <div class="card-body">
+                    <ul class="ideal-list">
+                        <li><span class="icon-usage">GAP</span> Muros y vigas</li>
+                        <li><span class="icon-usage">GAP</span> Contra cimientos</li>
+                    </ul>
+                    <a href="https://wa.me/528119988053" class="btn-rentar">Rentar Equipo</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header-kg"><span class="modelo-txt">Rompedora de 25 KG</span></div>
+                <img src="25.jpg" alt="Rompedora 25kg" class="card-img">
+                <div class="card-specs-bar">1800 Watts | 60 Joules</div>
+                <div class="card-body">
+                    <ul class="ideal-list">
+                        <li><span class="icon-usage">GAP</span> Pisos y banquetas</li>
+                        <li><span class="icon-usage">GAP</span> Losas de concreto</li>
+                    </ul>
+                    <a href="https://wa.me/528119988053" class="btn-rentar">Rentar Equipo</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header-kg"><span class="modelo-txt">Rompedora de 27 KG</span></div>
+                <img src="27.jpg" alt="Rompedora 27kg" class="card-img">
+                <div class="card-specs-bar">2100 Watts | 70 Joules</div>
+                <div class="card-body">
+                    <ul class="ideal-list">
+                        <li><span class="icon-usage">GAP</span> Asfalto y piedras</li>
+                        <li><span class="icon-usage">GAP</span> Zapatas y drenaje</li>
+                    </ul>
+                    <a href="https://wa.me/528119988053" class="btn-rentar">Rentar Equipo</a>
+                </div>
             </div>
         </div>
 
+        <div style="text-align: center;"><h2 class="titulo-seccion">Vibradores de Concreto</h2></div>
+        <div class="grid">
+            <div class="card">
+                <div class="card-header-vibrador"><span class="modelo-txt">Vibrador Eléctrico CAT</span></div>
+                <img src="Vibrador.jpg" alt="Vibrador Amarillo" class="card-img">
+                <div class="card-specs-bar">1.5 HP | Alta Frecuencia</div>
+                <div class="card-body">
+                    <ul class="ideal-list">
+                        <li><span class="icon-usage-v">GAP</span> Compactación de losas</li>
+                        <li><span class="icon-usage-v">GAP</span> Acabado profesional</li>
+                    </ul>
+                    <a href="https://wa.me/528119988053" class="btn-rentar">Cotizar Ahora</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header-vibrador"><span class="modelo-txt">Vibrador Portátil V1</span></div>
+                <img src="vibrador1.jpg" alt="Vibrador 1" class="card-img">
+                <div class="card-specs-bar">Chicote Reforzado</div>
+                <div class="card-body">
+                    <ul class="ideal-list">
+                        <li><span class="icon-usage-v">GAP</span> Ideal para castillos</li>
+                        <li><span class="icon-usage-v">GAP</span> Fácil manejo</li>
+                    </ul>
+                    <a href="https://wa.me/528119988053" class="btn-rentar">Cotizar Ahora</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header-vibrador"><span class="modelo-txt">Vibrador Industrial V2</span></div>
+                <img src="vibrador2.jpg" alt="Vibrador 2" class="card-img">
+                <div class="card-specs-bar">Uso Heavy Duty</div>
+                <div class="card-body">
+                    <ul class="ideal-list">
+                        <li><span class="icon-usage-v">GAP</span> Motores de alto rendimiento</li>
+                        <li><span class="icon-usage-v">GAP</span> Resistencia en obra</li>
+                    </ul>
+                    <a href="https://wa.me/528119988053" class="btn-rentar">Cotizar Ahora</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header-vibrador"><span class="modelo-txt">Vibrador de Precisión V3</span></div>
+                <img src="vibrador3.jpg" alt="Vibrador 3" class="card-img">
+                <div class="card-specs-bar">Cabezal de Acero</div>
+                <div class="card-body">
+                    <ul class="ideal-list">
+                        <li><span class="icon-usage-v">GAP</span> Especial para trabes</li>
+                        <li><span class="icon-usage-v">GAP</span> Máxima eliminación de aire</li>
+                    </ul>
+                    <a href="https://wa.me/528119988053" class="btn-rentar">Cotizar Ahora</a>
+                </div>
+            </div>
         </div>
+    </main>
 
-    <div id="overlay" class="overlay-resaltado">
-        <img id="img-ampliada" src="" alt="Vista ampliada">
-    </div>
+    <section class="marcas-container">
+        <div class="marcas-grid">
+            <span class="marca-logo logo-makita">Makita</span>
+            <span class="marca-logo logo-dewalt">DeWalt</span>
+            <span class="marca-logo logo-bosch">Bosch</span>
+            <span class="marca-logo logo-edoevom">edoevom</span>
+        </div>
+    </section>
+
+    <footer class="footer-info">
+        <div class="info-box">
+            <h4>Horarios de Atención</h4>
+            <p>Lunes a Viernes: 8:00 am - 8:00 pm</p>
+            <p>Sábado: 9:00 am - 5:00 pm</p>
+            <p class="horario-domingo">Domingo: 9:00 am - 2:00 pm</p>
+        </div>
+        <div class="info-box">
+            <h4>Zonas de Cobertura</h4>
+            <p>Juárez | Guadalupe | Apodaca</p>
+            <p>San Nicolás | Monterrey</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/528119988053" class="ws-flotante" target="_blank" rel="noopener">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="25" alt="WhatsApp Icon">
+        811-998-80-53
+    </a>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. WHATSAPP INTELIGENTE: Personaliza el mensaje según el equipo seleccionado
+            const rentButtons = document.querySelectorAll('.btn-rentar');
             
-            // --- LÓGICA PARA RESALTAR FOTOS ---
-            const overlay = document.getElementById('overlay');
-            const imgAmpliada = document.getElementById('img-ampliada');
-            const fotos = document.querySelectorAll('.foto-clic');
-
-            fotos.forEach(foto => {
-                foto.addEventListener('click', () => {
-                    imgAmpliada.src = foto.src; // Pasa la imagen a la vista grande
-                    overlay.style.display = 'flex'; // Muestra el fondo negro
-                    document.body.classList.add('no-scroll'); // Evita que la página se mueva atrás
-                });
-            });
-
-            // Cerrar el resaltado al hacer clic en cualquier parte del fondo negro
-            overlay.addEventListener('click', () => {
-                overlay.style.display = 'none';
-                document.body.classList.remove('no-scroll');
-            });
-
-
-            // --- LÓGICA PARA WHATSAPP (Ajustada) ---
-            const botones = document.querySelectorAll('.btn-ws');
-            botones.forEach(btn => {
+            rentButtons.forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const nombreEquipo = btn.closest('.card').getAttribute('data-nombre');
+                    
+                    const card = btn.closest('.card');
+                    const equipoNombre = card.querySelector('.modelo-txt').innerText;
                     const telefono = "528119988053";
-                    const texto = encodeURIComponent(`Hola G-A-P, solicito informes sobre: ${nombreEquipo}`);
-                    window.open(`https://wa.me/${telefono}?text=${texto}`, '_blank');
+                    
+                    // Texto dinámico para facilitar la venta
+                    const mensaje = encodeURIComponent(`Hola G-A-P, me interesa rentar el equipo: ${equipoNombre}. ¿Me podrían dar informes de disponibilidad?`);
+                    const urlWhatsapp = `https://wa.me/${telefono}?text=${mensaje}`;
+                    
+                    window.open(urlWhatsapp, '_blank');
                 });
+            });
+
+            // 2. EFECTO SCROLL REVEAL: Las tarjetas aparecen con estilo al bajar
+            const cards = document.querySelectorAll('.card');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearanceObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                    }
+                });
+            }, observerOptions);
+
+            cards.forEach(card => {
+                // Estado inicial invisible
+                card.style.opacity = "0";
+                card.style.transform = "translateY(30px)";
+                card.style.transition = "all 0.6s ease-out";
+                appearanceObserver.observe(card);
             });
         });
     </script>
