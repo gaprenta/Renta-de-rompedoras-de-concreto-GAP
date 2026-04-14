@@ -88,7 +88,7 @@
 
     <header>
         <div class="logo-container">
-            <img src="logotipo.jpg" alt="Logo GAP" class="header-logo-img">
+            <img src="logotipo1.png" alt="Logo G-A-P" class="header-logo-img">
         </div>
     </header>
 
@@ -263,7 +263,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. WHATSAPP INTELIGENTE: Personaliza el mensaje según el equipo seleccionado
             const rentButtons = document.querySelectorAll('.btn-rentar');
             
             rentButtons.forEach(btn => {
@@ -274,7 +273,6 @@
                     const equipoNombre = card.querySelector('.modelo-txt').innerText;
                     const telefono = "528119988053";
                     
-                    // Texto dinámico para facilitar la venta
                     const mensaje = encodeURIComponent(`Hola G-A-P, me interesa rentar el equipo: ${equipoNombre}. ¿Me podrían dar informes de disponibilidad?`);
                     const urlWhatsapp = `https://wa.me/${telefono}?text=${mensaje}`;
                     
@@ -282,7 +280,6 @@
                 });
             });
 
-            // 2. EFECTO SCROLL REVEAL: Las tarjetas aparecen con estilo al bajar
             const cards = document.querySelectorAll('.card');
             
             const observerOptions = {
@@ -300,7 +297,6 @@
             }, observerOptions);
 
             cards.forEach(card => {
-                // Estado inicial invisible
                 card.style.opacity = "0";
                 card.style.transform = "translateY(30px)";
                 card.style.transition = "all 0.6s ease-out";
