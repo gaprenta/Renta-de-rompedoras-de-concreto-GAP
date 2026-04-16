@@ -18,7 +18,7 @@
         .empresa-card { border-left: 5px solid #FFCD00; padding-left: 15px; }
         .empresa-card h3 { color: #002752; text-transform: uppercase; margin-top: 0; }
 
-        .cotizador-container { max-width: 650px; margin: 40px auto; background: #f4f4f4; border: 5px solid #FFCD00; padding: 30px; border-radius: 15px; font-family: 'Arial', sans-serif; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .cotizador-container { max-width: 650px; margin: 40px auto; background: #f4f4f4; border: 5px solid #FFCD00; padding: 30px; border-radius: 15px; font-family: 'Arial', sans-serif; box-shadow: 0 10px 30px rgba(0,0,0,0.1); scroll-margin-top: 20px; }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px; color: #002752; }
         .form-group input, .form-group select { width: 100%; padding: 12px; border: 2px solid #002752; border-radius: 5px; font-weight: bold; box-sizing: border-box; }
@@ -36,10 +36,13 @@
         .seccion-equipos { padding: 50px 20px; max-width: 1200px; margin: 0 auto; background: #fafafa; }
         .seccion-equipos h2 { text-align: center; text-transform: uppercase; color: #002752; margin-bottom: 40px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-        .card { border: 3px solid #002752; display: flex; flex-direction: column; text-align: center; background: #fff; }
+        .card { border: 3px solid #002752; display: flex; flex-direction: column; text-align: center; background: #fff; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .card img { width: 100%; height: 200px; object-fit: contain; padding: 10px; background: #fff; }
         .card h4 { background: #002752; color: #FFCD00; margin: 0; padding: 12px; text-transform: uppercase; font-size: 14px; }
         .card p { font-family: 'Arial', sans-serif; padding: 10px; font-size: 13px; font-weight: bold; flex-grow: 1; margin: 0; color: #444; }
+        
+        .btn-cotizar-card { background: #FFCD00; color: #002752; border: none; padding: 10px; font-weight: bold; cursor: pointer; text-transform: uppercase; border-top: 2px solid #002752; }
 
         footer { background: #000; color: #fff; padding: 50px 20px; border-top: 8px solid #FFCD00; margin-top: 50px; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; font-family: 'Arial', sans-serif; }
@@ -74,6 +77,7 @@
 </section>
 
 <div class="cotizador-container" id="form-pedidos">
+    <h3 style="text-align:center; color:#002752; text-transform:uppercase;">Cotizador Digital</h3>
     <div class="form-group">
         <label>Nombre del Cliente:</label>
         <input type="text" id="nombre" placeholder="Nombre completo">
@@ -87,7 +91,7 @@
     <div class="form-group">
         <label>Colonia o Sector:</label>
         <input type="text" id="coloniaInput" placeholder="Ej. Valle Sur, Lindaavista, Huinalá..." onkeyup="detectarZona()">
-        <div id="infoZona" class="zona-status">Escriba su colonia para validar logística...</div>
+        <div id="infoZona" class="zona-status">Escriba su colonia para calcular flete ($15/km)...</div>
     </div>
 
     <div class="form-group">
@@ -98,15 +102,15 @@
     <div class="form-group">
         <label>Equipo Requerido:</label>
         <select id="equipo">
-            <option value="300">Rompedora 8kg</option>
-            <option value="300">Rompedora 12kg</option>
-            <option value="350">Rompedora 15kg</option>
-            <option value="400">Rompedora 25kg</option>
-            <option value="450">Rompedora 27kg</option>
-            <option value="300">Vibrador Eléctrico CAT</option>
-            <option value="300">Vibrador V1</option>
-            <option value="200">Vibrador V2</option>
-            <option value="200">Vibrador V3</option>
+            <option value="300">Rompedora 8kg - $300/día</option>
+            <option value="300">Rompedora 12kg - $300/día</option>
+            <option value="350">Rompedora 15kg - $350/día</option>
+            <option value="400">Rompedora 25kg - $400/día</option>
+            <option value="450">Rompedora 27kg - $450/día</option>
+            <option value="300">Vibrador Eléctrico CAT - $300/día</option>
+            <option value="300">Vibrador V1 - $300/día</option>
+            <option value="200">Vibrador V2 - $200/día</option>
+            <option value="200">Vibrador V3 - $200/día</option>
         </select>
     </div>
 
@@ -115,8 +119,8 @@
         <input type="number" id="dias" value="1" min="1">
     </div>
 
-    <input type="hidden" id="costoFlete" value="200">
-    <input type="hidden" id="nombreZona" value="Juárez Local">
+    <input type="hidden" id="costoFlete" value="150">
+    <input type="hidden" id="distanciaTexto" value="Local">
 
     <button class="btn-calcular" onclick="mostrarResumen()">Generar Presupuesto</button>
 
@@ -125,6 +129,7 @@
         <p id="res-detalles" style="line-height:1.6; font-size: 14px;"></p>
         <hr>
         <h2 style="margin:0; color:#002752;">TOTAL NETO: $<span id="res-total"></span></h2>
+        <p style="font-size:10px; color:gray;">*Incluye entrega y recolección.</p>
         
         <div class="botones-confirmar">
             <a href="#" id="wa-link" class="btn-confirmar">ACEPTAR Y ENVIAR</a>
@@ -136,15 +141,42 @@
 <section class="seccion-equipos">
     <h2>Nuestro Inventario</h2>
     <div class="grid">
-        <div class="card"><h4>Rompedora 8kg</h4><img src="8.jpg"><p>Ligera para muros y ranurado.</p></div>
-        <div class="card"><h4>Rompedora 12kg</h4><img src="12.jpg"><p>Efectiva para retiro de azulejo.</p></div>
-        <div class="card"><h4>Rompedora 15kg</h4><img src="15.jpg"><p>Potencia para firmes y losas.</p></div>
-        <div class="card"><h4>Rompedora 25kg</h4><img src="25.jpg"><p>Robustez para concreto reforzado.</p></div>
-        <div class="card"><h4>Rompedora 27kg</h4><img src="27.jpg"><p>Máxima potencia industrial.</p></div>
-        <div class="card"><h4>Vibrador CAT</h4><img src="Vibrador.jpg"><p>Alta frecuencia, motor sellado.</p></div>
-        <div class="card"><h4>Vibrador V1</h4><img src="vibrador1.jpg"><p>Portátil para columnas.</p></div>
-        <div class="card"><h4>Vibrador V2</h4><img src="vibrador2.jpg"><p>Estándar para losas.</p></div>
-        <div class="card"><h4>Vibrador V3</h4><img src="vibrador3.jpg"><p>Uso industrial continuo.</p></div>
+        <div class="card">
+            <h4>Rompedora 8kg</h4><img src="8.jpg"><p>Ligera para muros y ranurado.</p>
+            <button class="btn-cotizar-card" onclick="seleccionarYSubir('300', 0)">Cotizar Ahora</button>
+        </div>
+        <div class="card">
+            <h4>Rompedora 12kg</h4><img src="12.jpg"><p>Efectiva para retiro de azulejo.</p>
+            <button class="btn-cotizar-card" onclick="seleccionarYSubir('300', 1)">Cotizar Ahora</button>
+        </div>
+        <div class="card">
+            <h4>Rompedora 15kg</h4><img src="15.jpg"><p>Potencia para firmes y losas.</p>
+            <button class="btn-cotizar-card" onclick="seleccionarYSubir('350', 2)">Cotizar Ahora</button>
+        </div>
+        <div class="card">
+            <h4>Rompedora 25kg</h4><img src="25.jpg"><p>Robustez para concreto reforzado.</p>
+            <button class="btn-cotizar-card" onclick="seleccionarYSubir('400', 3)">Cotizar Ahora</button>
+        </div>
+        <div class="card">
+            <h4>Rompedora 27kg</h4><img src="27.jpg"><p>Máxima potencia industrial.</p>
+            <button class="btn-cotizar-card" onclick="seleccionarYSubir('450', 4)">Cotizar Ahora</button>
+        </div>
+        <div class="card">
+            <h4>Vibrador CAT</h4><img src="Vibrador.jpg"><p>Alta frecuencia, motor sellado.</p>
+            <button class="btn-cotizar-card" onclick="seleccionarYSubir('300', 5)">Cotizar Ahora</button>
+        </div>
+        <div class="card">
+            <h4>Vibrador V1</h4><img src="vibrador1.jpg"><p>Portátil para columnas.</p>
+            <button class="btn-cotizar-card" onclick="seleccionarYSubir('300', 6)">Cotizar Ahora</button>
+        </div>
+        <div class="card">
+            <h4>Vibrador V2</h4><img src="vibrador2.jpg"><p>Estándar para losas.</p>
+            <button class="btn-cotizar-card" onclick="seleccionarYSubir('200', 7)">Cotizar Ahora</button>
+        </div>
+        <div class="card">
+            <h4>Vibrador V3</h4><img src="vibrador3.jpg"><p>Uso industrial continuo.</p>
+            <button class="btn-cotizar-card" onclick="seleccionarYSubir('200', 8)">Cotizar Ahora</button>
+        </div>
     </div>
 </section>
 
@@ -168,67 +200,63 @@
 </footer>
 
 <script>
+    // PRECIO POR KILOMETRO
+    const PRECIO_KM = 15;
+
+    // BASE DE DATOS DE DISTANCIAS APROXIMADAS DESDE VALLE SUR
     const baseZonas = [
-        { 
-            // RADIO HASTA 15KM (COSTO 200)
-            palabras: ["valle sur", "san roque", "santa monica", "anzures", "villas de san jose", "juarez centro", "real de juarez", "acueducto", "los puertos", "terranova", "ex hacienda", "pueblo nuevo", "huinala", "tres caminos", "eloy cavazos", "pablo livas", "guadalupe centro", "dos rios", "faisanes"], 
-            zona: "Radio 15km (Local)", costo: 200 
-        },
-        { 
-            // RADIO 20KM (COSTO 300)
-            palabras: ["la pastora", "lindavista", "vivienda popular", "la fe", "centro de apodaca", "expo", "estadio", "santa maria", "san miguel"], 
-            zona: "Radio 20km", costo: 300 
-        },
-        { 
-            // RADIO 25KM (COSTO 375)
-            palabras: ["san nicolas center", "las puentes", "universidad", "anahuac", "cuauhtemoc", "mty centro", "zona tec", "obispado", "santa rosa", "metroplex"], 
-            zona: "Radio 25km", costo: 375 
-        },
-        { 
-            // RADIO 30KM (COSTO 450)
-            palabras: ["mitras", "san bernabe", "solidaridad", "san jeronimo", "san pedro", "valle oriente", "la estanzuela", "escobedo centro"], 
-            zona: "Radio 30km", costo: 450 
-        },
-        { 
-            // RADIO 35KM (COSTO 500)
-            palabras: ["cumbres", "santa catarina", "garcia", "dominio", "carretera nacional", "el uro", "santiago", "puerta de hierro"], 
-            zona: "Radio 35km", costo: 500 
-        }
+        { palabras: ["valle sur", "san roque", "santa monica", "anzures", "villas de san jose", "juarez centro"], km: 5 },
+        { palabras: ["real de juarez", "acueducto", "los puertos", "terranova", "ex hacienda"], km: 10 },
+        { palabras: ["pueblo nuevo", "huinala", "tres caminos", "eloy cavazos", "pablo livas", "dos rios", "faisanes"], km: 15 },
+        { palabras: ["guadalupe centro", "la pastora", "vivienda popular", "la fe", "centro de apodaca", "expo", "estadio", "santa maria", "san miguel"], km: 20 },
+        { palabras: ["lindavista", "san nicolas center", "las puentes", "universidad", "anahuac", "cuauhtemoc", "mty centro", "zona tec", "obispado", "santa rosa", "metroplex"], km: 25 },
+        { palabras: ["mitras", "san bernabe", "solidaridad", "san jeronimo", "san pedro", "valle oriente", "la estanzuela", "escobedo centro"], km: 30 },
+        { palabras: ["cumbres", "santa catarina", "garcia", "dominio", "carretera nacional", "el uro", "santiago", "puerta de hierro"], km: 40 }
     ];
 
     function detectarZona() {
         const input = document.getElementById('coloniaInput').value.toLowerCase();
         const infoZona = document.getElementById('infoZona');
         const fleteInput = document.getElementById('costoFlete');
-        const nombreZonaInput = document.getElementById('nombreZona');
+        const distTextoInput = document.getElementById('distanciaTexto');
         
         if (input.length < 3) {
-            infoZona.innerText = "Escriba su colonia...";
+            infoZona.innerText = "Escriba su colonia para calcular flete...";
             infoZona.style.background = "#002752";
-            fleteInput.value = 200; 
             return;
         }
 
-        let zonaEncontrada = null;
+        let kmEncontrado = 25; // Default si no se encuentra
+        let encontrado = false;
+
         for (let z of baseZonas) {
             for (let p of z.palabras) {
-                if (input.includes(p)) { zonaEncontrada = z; break; }
+                if (input.includes(p)) { 
+                    kmEncontrado = z.km; 
+                    encontrado = true;
+                    break; 
+                }
             }
-            if (zonaEncontrada) break;
+            if (encontrado) break;
         }
 
-        if (zonaEncontrada) {
-            infoZona.innerText = "✓ Distancia: " + zonaEncontrada.zona;
-            infoZona.style.background = "#25D366"; 
-            infoZona.style.color = "#fff";
-            fleteInput.value = zonaEncontrada.costo;
-            nombreZonaInput.value = zonaEncontrada.zona;
-        } else {
-            infoZona.innerText = "Ajustando flete por radio de distancia...";
-            infoZona.style.background = "#FFCD00";
-            infoZona.style.color = "#000";
-            fleteInput.value = 375; // Flete promedio si no se identifica exacto
-        }
+        let costoFinal = kmEncontrado * PRECIO_KM;
+        
+        // Mínimo de flete 150 si es muy cerca
+        if(costoFinal < 150) costoFinal = 150;
+
+        fleteInput.value = costoFinal;
+        distTextoInput.value = kmEncontrado + " km aprox.";
+        
+        infoZona.innerText = `Distancia aprox: ${kmEncontrado}km | Flete: $${costoFinal}`;
+        infoZona.style.background = encontrado ? "#25D366" : "#FFCD00";
+        infoZona.style.color = encontrado ? "#fff" : "#000";
+    }
+
+    function seleccionarYSubir(valor, index) {
+        const selector = document.getElementById('equipo');
+        selector.selectedIndex = index;
+        document.getElementById('form-pedidos').scrollIntoView({ behavior: 'smooth' });
     }
 
     function mostrarResumen() {
@@ -237,24 +265,28 @@
         const tel = document.getElementById('telefono').value;
         const dir = document.getElementById('direccion').value;
         const flete = parseFloat(document.getElementById('costoFlete').value);
+        const dist = document.getElementById('distanciaTexto').value;
         const d = parseInt(document.getElementById('dias').value);
         const eSelect = document.getElementById('equipo');
         const eNom = eSelect.options[eSelect.selectedIndex].text;
         
-        if(!nom || !col || !dir) { alert("Complete Nombre, Dirección y Colonia."); return; }
+        if(!nom || !col || !dir || !tel) { alert("Por favor complete todos los campos de contacto."); return; }
 
-        const total = (parseFloat(eSelect.value) * d) + flete;
+        const rentaTotal = parseFloat(eSelect.value) * d;
+        const total = rentaTotal + flete;
 
         document.getElementById('res-detalles').innerHTML = `
             <b>Cliente:</b> ${nom}<br>
-            <b>Ubicación:</b> ${col}<br>
+            <b>Dirección:</b> ${dir}, ${col}<br>
             <b>Equipo:</b> ${eNom}<br>
+            <b>Distancia:</b> ${dist}<br>
+            <b>Costo Envío:</b> $${flete}<br>
             <b>Tiempo:</b> ${d} día(s)
         `;
         document.getElementById('res-total').innerText = total;
         document.getElementById('res-box').style.display = 'block';
 
-        const mensajeWA = `*COTIZACIÓN G-A-P*\n\n*Cliente:* ${nom}\n*Dirección:* ${dir}\n*Colonia:* ${col}\n*Equipo:* ${eNom}\n*Días:* ${d}\n*Total:* $${total}`;
+        const mensajeWA = `*NUEVA COTIZACIÓN G-A-P*\n\n*Cliente:* ${nom}\n*Dirección:* ${dir}\n*Colonia:* ${col}\n*Equipo:* ${eNom}\n*Días:* ${d}\n*Flete (${dist}):* $${flete}\n*TOTAL:* $${total}`;
         document.getElementById('wa-link').href = `https://wa.me/528119988053?text=` + encodeURIComponent(mensajeWA);
     }
 
