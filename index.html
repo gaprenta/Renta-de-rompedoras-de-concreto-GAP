@@ -50,26 +50,32 @@
         .card:hover { border-color: #FFCD00; transform: translateY(-8px); }
         .card-img { width: 100%; height: 280px; object-fit: contain; border-bottom: 4px solid #FFCD00; background: #fdfdfd; }
         
-        /* Rotación específica para equipos tipo pistola (8, 12, 15 kg) */
-        .img-pistola { transform: rotate(90deg); object-fit: contain !important; padding: 20px; }
+        /* CORRECCIÓN: Rotación y ajuste nítido para equipos tipo pistola */
+        .img-pistola { 
+            transform: rotate(90deg); 
+            /* Al rotar, intercambiamos ancho y alto para que 'contain' funcione sobre el área correcta */
+            width: auto !important; 
+            height: 100% !important; 
+            max-width: 280px; /* No más ancha que la altura original del contenedor */
+            object-fit: contain !important; 
+            margin: 0 auto; /* Centrar horizontalmente si es necesario */
+            padding: 10px; /* Pequeño padding para que no toque los bordes */
+        }
 
         .disponibilidad-txt { background: #f8f8f8; color: #d9534f; font-size: 10px; text-align: center; padding: 5px; font-family: sans-serif; border-bottom: 1px solid #eee; }
 
         .card-header-kg { background: #333; color: #FFCD00; padding: 20px; text-align: center; border-bottom: 5px solid #002752; }
         .card-header-vibrador { background: #002752; color: #FFCD00; padding: 20px; text-align: center; border-bottom: 5px solid #FFCD00; }
-        /* Header para otros equipos */
         .card-header-general { background: #555; color: #fff; padding: 20px; text-align: center; border-bottom: 5px solid #333; }
 
         .modelo-txt { font-weight: 900; font-size: 1.3em; text-transform: uppercase; }
         .card-specs-bar { background: #FFCD00; color: #002752; padding: 12px; text-align: center; font-weight: 900; }
-        /* Barra de specs para otros equipos */
         .card-specs-bar-general { background: #333; color: #FFCD00; padding: 12px; text-align: center; font-weight: 900; }
         
         .card-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; font-family: 'Arial', sans-serif; }
         .ideal-list { list-style: none; padding: 0; margin: 15px 0 25px 0; font-weight: bold; }
         .icon-usage { color: #fff; background: #002752; padding: 2px 8px; border-radius: 3px; margin-right: 5px; }
         .icon-usage-v { color: #000; background: #FFCD00; padding: 2px 8px; border-radius: 3px; margin-right: 5px; }
-        /* Icono para otros equipos */
         .icon-usage-g { color: #fff; background: #555; padding: 2px 8px; border-radius: 3px; margin-right: 5px; }
         
         .btn-cotizar { cursor: pointer; display: block; border: none; width: 100%; background: #002752; color: #FFCD00; text-align: center; padding: 18px; font-weight: 900; text-transform: uppercase; font-size: 1.1em; }
@@ -144,7 +150,10 @@
                     <span class="modelo-txt">Rompedora de 8 KG</span><br>
                     <span class="tag-ligero">EQUIPO LIGERO TIPO PISTOLA</span>
                 </div>
-                <img src="8.jpg" alt="Rompedora 8kg" class="card-img img-pistola"> <div class="disponibilidad-txt">Al momento de la entrega el equipo puede variar según disponibilidad</div>
+                <div style="height: 280px; display: flex; align-items: center; justify-content: center; background: #fdfdfd; border-bottom: 4px solid #FFCD00;">
+                    <img src="8.jpg" alt="Rompedora 8kg" class="img-pistola">
+                </div>
+                <div class="disponibilidad-txt">Al momento de la entrega el equipo puede variar según disponibilidad</div>
                 <div class="card-specs-bar">720 Watts | 6 Joules</div>
                 <div class="card-body">
                     <ul class="ideal-list">
@@ -160,7 +169,9 @@
                     <span class="modelo-txt">Rompedora de 12 KG (V1)</span><br>
                     <span class="tag-ligero">EQUIPO LIGERO TIPO PISTOLA</span>
                 </div>
-                <img src="12.jpg" alt="Rompedora 12kg" class="card-img img-pistola">
+                <div style="height: 280px; display: flex; align-items: center; justify-content: center; background: #fdfdfd; border-bottom: 4px solid #FFCD00;">
+                    <img src="12.jpg" alt="Rompedora 12kg" class="img-pistola">
+                </div>
                 <div class="disponibilidad-txt">Al momento de la entrega el equipo puede variar según disponibilidad</div>
                 <div class="card-specs-bar">960 Watts | 12 Joules</div>
                 <div class="card-body">
@@ -177,7 +188,9 @@
                     <span class="modelo-txt">Rompedora de 12 KG (V2)</span><br>
                     <span class="tag-ligero">EQUIPO LIGERO TIPO PISTOLA</span>
                 </div>
-                <img src="12.1.jpg" alt="Rompedora 12.1kg" class="card-img img-pistola">
+                <div style="height: 280px; display: flex; align-items: center; justify-content: center; background: #fdfdfd; border-bottom: 4px solid #FFCD00;">
+                    <img src="12.1.jpg" alt="Rompedora 12.1kg" class="img-pistola">
+                </div>
                 <div class="disponibilidad-txt">Al momento de la entrega el equipo puede variar según disponibilidad</div>
                 <div class="card-specs-bar">960 Watts | 12 Joules</div>
                 <div class="card-body">
@@ -194,7 +207,9 @@
                     <span class="modelo-txt">Rompedora de 15 KG (V1)</span><br>
                     <span class="tag-ligero">EQUIPO LIGERO TIPO PISTOLA</span>
                 </div>
-                <img src="15.jpg" alt="Rompedora 15kg" class="card-img img-pistola">
+                <div style="height: 280px; display: flex; align-items: center; justify-content: center; background: #fdfdfd; border-bottom: 4px solid #FFCD00;">
+                    <img src="15.jpg" alt="Rompedora 15kg" class="img-pistola">
+                </div>
                 <div class="disponibilidad-txt">Al momento de la entrega el equipo puede variar según disponibilidad</div>
                 <div class="card-specs-bar">1200 Watts | 25 Joules</div>
                 <div class="card-body">
@@ -211,7 +226,9 @@
                     <span class="modelo-txt">Rompedora de 15 KG (V2)</span><br>
                     <span class="tag-ligero">EQUIPO LIGERO TIPO PISTOLA</span>
                 </div>
-                <img src="15.1.jpg" alt="Rompedora 15.1kg" class="card-img img-pistola">
+                <div style="height: 280px; display: flex; align-items: center; justify-content: center; background: #fdfdfd; border-bottom: 4px solid #FFCD00;">
+                    <img src="15.1.jpg" alt="Rompedora 15.1kg" class="img-pistola">
+                </div>
                 <div class="disponibilidad-txt">Al momento de la entrega el equipo puede variar según disponibilidad</div>
                 <div class="card-specs-bar">1200 Watts | 25 Joules</div>
                 <div class="card-body">
@@ -442,3 +459,13 @@
             if(nom == "" || col == "" || mun == "") {
                 alert("Por favor completa tus datos para la cotización");
                 return;
+            }
+
+            const mensaje = `Hola GAP, me interesa cotizar una renta.%0A%0A*Equipo:* ${equipoSeleccionado}%0A*Nombre:* ${nom}%0A*Colonia:* ${col}%0A*Municipio:* ${mun}`;
+            window.open(`https://wa.me/528119988053?text=${mensaje}`, '_blank');
+            cerrarModal();
+        }
+    </script>
+
+</body>
+</html>
