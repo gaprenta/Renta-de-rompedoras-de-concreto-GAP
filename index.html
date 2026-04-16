@@ -46,7 +46,7 @@
 
 <section class="hero">
     <h2>Líderes en Renta de Rompedoras y Vibradores de Concreto</h2>
-    <p>Potencia, Eficiencia y Compromiso en cada Obra. Soluciones integrales para construcción en Nuevo León.</p>
+    <p>Potencia, Eficiencia y Compromiso en cada Obra. Somos tu aliado en Juárez, Guadalupe, Apodaca, San Nicolás y Monterrey.</p>
 </section>
 
 <div class="cotizador-container" id="form-pedidos">
@@ -56,20 +56,46 @@
     </div>
     
     <div class="form-group">
-        <label>Distancia desde Base (Valle Sur):</label>
+        <label>Zona de Entrega:</label>
         <select id="zona">
-            <option value="0" disabled selected>-- Selecciona Radio de Distancia --</option>
-            <option value="200">Radio de 0 a 7 km - $200</option>
-            <option value="250">Radio de 7 a 14 km - $250</option>
-            <option value="300">Radio de 14 a 21 km - $300</option>
-            <option value="400">Radio de 21 a 28 km - $400</option>
-            <option value="450">Radio de 28 a 35 km - $450</option>
+            <option value="0" disabled selected>-- Selecciona tu Zona/Colonia --</option>
+            <optgroup label="JUÁREZ (Radio 0-7km: $200)">
+                <option value="200">Valle Sur / Real de Juárez</option>
+                <option value="200">Santa Mónica / Acueducto</option>
+                <option value="200">Juárez Centro</option>
+                <option value="200">Colonia San Roque</option>
+            </optgroup>
+            <optgroup label="GUADALUPE (Radio 7-21km: $250 - $300)">
+                <option value="250">Dos Ríos / El Porvenir ($250)</option>
+                <option value="250">E. Cavazos (Paseo Gpe) ($250)</option>
+                <option value="300">Lindavista / La Pastora ($300)</option>
+                <option value="300">Contry La Silla ($300)</option>
+            </optgroup>
+            <optgroup label="APODACA (Radio 14-28km: $300 - $400)">
+                <option value="300">Huinalá / Pueblo Nuevo ($300)</option>
+                <option value="400">Centro de Apodaca ($400)</option>
+                <option value="400">Zona Aeropuerto ($400)</option>
+                <option value="400">Santa Rosa ($400)</option>
+            </optgroup>
+            <optgroup label="MONTERREY (Radio 21-35km: $400 - $450)">
+                <option value="400">Monterrey Centro ($400)</option>
+                <option value="400">Zona Tec ($400)</option>
+                <option value="450">San Jerónimo ($450)</option>
+                <option value="450">Cumbres (Sectores bajos) ($450)</option>
+                <option value="500">Cumbres García / Dominio ($500)</option>
+            </optgroup>
+            <optgroup label="SAN NICOLÁS / ESCOBEDO (Radio 21-35km: $400 - $450)">
+                <option value="400">Zona La Fe ($400)</option>
+                <option value="400">Las Puentes ($400)</option>
+                <option value="450">Anáhuac / Universidad ($450)</option>
+                <option value="450">Escobedo Centro / Sendero ($450)</option>
+            </optgroup>
         </select>
     </div>
 
     <div class="form-group">
-        <label>Dirección exacta y Colonia:</label>
-        <input type="text" id="direccion" placeholder="Calle, número y colonia">
+        <label>Dirección exacta (Calle y Número):</label>
+        <input type="text" id="direccion" placeholder="Ej. Calle Roble #123, Col. Las Lomas">
     </div>
 
     <div class="form-group">
@@ -98,7 +124,7 @@
         <h3 style="margin:0; text-transform:uppercase; color:#002752;">Resumen de Cotización</h3>
         <p id="res-detalles" style="line-height:1.6;"></p>
         <hr>
-        <h2 style="margin:0; color:#002752;">TOTAL ESTIMADO: $<span id="res-total"></span></h2>
+        <h2 style="margin:0; color:#002752;">TOTAL A PAGAR: $<span id="res-total"></span></h2>
         
         <div class="botones-confirmar">
             <a href="#" id="wa-link" class="btn-confirmar" target="_blank">ACEPTAR</a>
@@ -127,7 +153,7 @@
     <div class="footer-grid">
         <div class="footer-item">
             <h3>Nuestra Empresa</h3>
-            <p>En G-A-P nos enfocamos en proporcionar soluciones reales para la construcción. Ofrecemos equipos con mantenimiento constante para garantizar el éxito de su proyecto.</p>
+            <p>En G-A-P nos enfocamos en proporcionar soluciones reales para la construcción con equipo de alto rendimiento y mantenimiento constante.</p>
         </div>
         <div class="footer-item">
             <h3>Horarios de Atención</h3>
@@ -156,7 +182,7 @@
         const eNom = eSelect.options[eSelect.selectedIndex].text;
         
         if(!nom || zonaSel.value == "0") {
-            alert("Por favor completa tu nombre y selecciona el radio de distancia.");
+            alert("Por favor completa tu nombre y selecciona tu zona.");
             return;
         }
 
@@ -166,7 +192,7 @@
 
         document.getElementById('res-detalles').innerHTML = `
             <b>Cliente:</b> ${nom}<br>
-            <b>Distancia:</b> ${zonaNom}<br>
+            <b>Zona:</b> ${zonaNom}<br>
             <b>Equipo:</b> ${eNom}<br>
             <b>Días de renta:</b> ${d}<br><br>
             <b>Costo Renta:</b> $${rentaTotal}<br>
@@ -177,7 +203,7 @@
 
         const mensajeWA = `*SOLICITUD DE RENTA G-A-P*\n\n` +
             `*Cliente:* ${nom}\n` +
-            `*Rango Distancia:* ${zonaNom}\n` +
+            `*Zona:* ${zonaNom}\n` +
             `*Dirección:* ${dir}\n` +
             `*Equipo:* ${eNom}\n` +
             `*Días:* ${d}\n` +
@@ -192,7 +218,7 @@
 
     function rechazarPedido() {
         document.getElementById('res-box').style.display = 'none';
-        alert("Cotización cancelada. Puedes modificar los datos si lo deseas.");
+        alert("Cotización cancelada.");
     }
 </script>
 
