@@ -19,8 +19,7 @@
         .form-group label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px; }
         .form-group input, .form-group select { width: 100%; padding: 12px; border: 2px solid #002752; border-radius: 5px; font-weight: bold; box-sizing: border-box; font-size: 14px; }
         
-        /* Estilo para el detector de zona */
-        .zona-status { background: #002752; color: #FFCD00; padding: 10px; border-radius: 5px; font-size: 12px; margin-top: 5px; font-weight: bold; text-align: center; }
+        .zona-status { background: #002752; color: #FFCD00; padding: 10px; border-radius: 5px; font-size: 12px; margin-top: 5px; font-weight: bold; text-align: center; transition: 0.3s; }
 
         .btn-calcular { width: 100%; background: #000; color: #FFCD00; padding: 20px; border: none; font-weight: 900; text-transform: uppercase; cursor: pointer; font-size: 18px; }
         
@@ -57,16 +56,21 @@
         <label>Nombre del Cliente:</label>
         <input type="text" id="nombre" placeholder="Nombre completo">
     </div>
-    
-    <div class="form-group">
-        <label>Colonia / Sector de Entrega:</label>
-        <input type="text" id="coloniaInput" placeholder="Ej: Valle Sur, La Pastora, Huinalá..." onkeyup="detectarZona()">
-        <div id="infoZona" class="zona-status">Escriba su colonia para detectar flete automáticamente</div>
-    </div>
 
     <div class="form-group">
         <label>Dirección exacta (Calle y Número):</label>
         <input type="text" id="direccion" placeholder="Ej. Calle Pino #123">
+    </div>
+
+    <div class="form-group">
+        <label>Colonia o Sector:</label>
+        <input type="text" id="coloniaInput" placeholder="Ej. Valle Sur, La Pastora, Huinalá..." onkeyup="detectarZona()">
+        <div id="infoZona" class="zona-status">Escriba su colonia para validar flete...</div>
+    </div>
+
+    <div class="form-group">
+        <label>Teléfono de Contacto:</label>
+        <input type="tel" id="telefono" placeholder="WhatsApp a 10 dígitos">
     </div>
 
     <div class="form-group">
@@ -140,14 +144,32 @@
 </footer>
 
 <script>
-    // BASE DE DATOS DE COLONIAS
+    // BASE DE DATOS EXTENDIDA DE COLONIAS POR MUNICIPIO
     const baseZonas = [
-        { palabras: ["valle sur", "san roque", "santa monica", "anzures", "juarez centro", "real de juarez", "acueducto"], zona: "Juárez (Cercano)", costo: 200 },
-        { palabras: ["tres caminos", "coahuila", "xochimilco", "dos rios", "el porvenir", "paseo gpe", "eloy cavazos"], zona: "Guadalupe (Cercano)", costo: 250 },
-        { palabras: ["la pastora", "vivienda popular", "expo", "estadio", "tolteca", "lindavista", "contry"], zona: "Guadalupe (Centro/Poniente)", costo: 350 },
-        { palabras: ["huinala", "pueblo nuevo", "centro de apodaca", "la fe", "las puentes", "sendero", "san nicolas"], zona: "Apodaca / San Nicolás", costo: 400 },
-        { palabras: ["mty centro", "zona tec", "obispado", "pesqueria"], zona: "Monterrey Centro / Pesquería", costo: 450 },
-        { palabras: ["cumbres", "san jeronimo", "santa catarina", "garcia", "dominio", "san pedro"], zona: "Zona Poniente Extendida", costo: 550 }
+        { 
+            palabras: ["valle sur", "san roque", "santa monica", "anzures", "juarez", "acueducto", "villas de san jose", "los puertos", "lomas de juarez", "mirador del parque", "palo blanco", "terranova", "ex hacienda", "juarez centro", "valle real", "montecristal", "la trinidad"], 
+            zona: "Juárez (Zona Local)", costo: 200 
+        },
+        { 
+            palabras: ["tres caminos", "coahuila", "xochimilco", "dos rios", "el porvenir", "paseo gpe", "eloy cavazos", "villas de san miguel", "faisanes", "balcones de san miguel", "rancho viejo", "azueta", "guadalupe centro"], 
+            zona: "Guadalupe Oriente", costo: 250 
+        },
+        { 
+            palabras: ["la pastora", "vivienda popular", "expo", "estadio", "tolteca", "lindavista", "contry", "la silla", "santa maria", "san sebastian", "pablo livas", "valles de guadalupe", "residencial azteca"], 
+            zona: "Guadalupe Poniente", costo: 350 
+        },
+        { 
+            palabras: ["huinala", "pueblo nuevo", "centro de apodaca", "la fe", "santa rosa", "margaritas", "alameda", "ebano", "concordia", "metroplex", "encarnacion", "moises saenz", "mirasol", "paseo de las flores"], 
+            zona: "Apodaca / San Nicolás Este", costo: 400 
+        },
+        { 
+            palabras: ["mty centro", "zona tec", "obispado", "mitras", "san bernabe", "solidaridad", "san nicolas center", "las puentes", "universidad", "anahuac", "cuauhtemoc", "sendero", "barrio"], 
+            zona: "Monterrey Centro / San Nicolás", costo: 450 
+        },
+        { 
+            palabras: ["cumbres", "san jeronimo", "santa catarina", "garcia", "dominio", "san pedro", "valle oriente", "la estanzuela", "carretera nacional", "el uro", "santiago", "escobedo", "puerta de hierro"], 
+            zona: "Zona Periferia Extendida", costo: 550 
+        }
     ];
 
     function detectarZona() {
@@ -170,32 +192,33 @@
         }
 
         if (zonaEncontrada) {
-            infoZona.innerText = "✓ Ubicación Detectada: Logística Optimizada";
-            infoZona.style.background = "#25D366"; // Verde WhatsApp
+            infoZona.innerText = "✓ Ubicación Identificada: Logística Lista";
+            infoZona.style.background = "#25D366"; 
             infoZona.style.color = "#fff";
             fleteInput.value = zonaEncontrada.costo;
             nombreZonaInput.value = zonaEncontrada.zona;
         } else {
-            infoZona.innerText = "Escriba su colonia para validar cobertura...";
+            infoZona.innerText = "Validando cobertura...";
             infoZona.style.background = "#002752";
             infoZona.style.color = "#FFCD00";
-            fleteInput.value = 350; // Flete base por defecto
+            fleteInput.value = 350; 
             nombreZonaInput.value = "Zona General";
         }
     }
 
     function mostrarResumen() {
         const nom = document.getElementById('nombre').value;
-        const col = document.getElementById('coloniaInput').value;
         const dir = document.getElementById('direccion').value;
+        const col = document.getElementById('coloniaInput').value;
+        const tel = document.getElementById('telefono').value;
         const flete = parseFloat(document.getElementById('costoFlete').value);
-        const zonaDetectada = document.getElementById('nombreZona').value;
+        const zonaDet = document.getElementById('nombreZona').value;
         const d = parseInt(document.getElementById('dias').value);
         const eSelect = document.getElementById('equipo');
         const eNom = eSelect.options[eSelect.selectedIndex].text;
         
-        if(!nom || col.length < 3) {
-            alert("Por favor completa tu nombre y colonia.");
+        if(!nom || !col || !dir) {
+            alert("Por favor completa los campos de Nombre, Dirección y Colonia.");
             return;
         }
 
@@ -205,23 +228,24 @@
 
         document.getElementById('res-detalles').innerHTML = `
             <b>Cliente:</b> ${nom}<br>
-            <b>Sector:</b> ${col}<br>
+            <b>Ubicación:</b> ${col}<br>
             <b>Equipo:</b> ${eNom}<br>
             <b>Tiempo:</b> ${d} día(s)<br>
-            <b>Logística:</b> Envío a domicilio incluido.
+            <b>Servicio:</b> Entrega a domicilio incluida.
         `;
         document.getElementById('res-total').innerText = total;
         document.getElementById('res-box').style.display = 'block';
 
-        const mensajeWA = `*SOLICITUD DE RENTA G-A-P*\n\n` +
+        const mensajeWA = `*PEDIDO DE RENTA G-A-P*\n\n` +
             `*Cliente:* ${nom}\n` +
-            `*Colonia:* ${col}\n` +
-            `*Zona Detectada:* ${zonaDetectada}\n` +
+            `*Teléfono:* ${tel}\n` +
             `*Dirección:* ${dir}\n` +
+            `*Colonia:* ${col}\n` +
+            `*Zona:* ${zonaDet}\n` +
             `*Equipo:* ${eNom}\n` +
             `*Días:* ${d}\n` +
             `--------------------------\n` +
-            `*Total Neto: $${total}*`;
+            `*TOTAL NETO: $${total}*`;
 
         document.getElementById('wa-link').href = `https://wa.me/528119988053?text=` + encodeURIComponent(mensajeWA);
         window.location.hash = '#res-box';
