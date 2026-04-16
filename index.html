@@ -3,227 +3,355 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-A-P | Renta de Rompedoras y Vibradores</title>
-    
+    <title>Renta de Rompedoras de Concreto en Juárez, Guadalupe, Apodaca, San Nicolás y Monterrey | G-A-P</title>
+    <meta name="description" content="Renta de rompedoras de concreto (8kg a 27kg) y vibradores en Monterrey, Guadalupe, Juárez y Apodaca. Equipos de alta potencia y entrega puntual.">
+    <link rel="canonical" href="https://gaprenta.github.io/renta-de-rompedoras-de-concreto-gap/" />
+    <link rel="icon" type="image/png" href="favicon.png">
+
     <style>
-        body { font-family: 'Arial Black', sans-serif; margin: 0; background: #fff; color: #000; line-height: 1.6; }
-        header { background: #FFCD00; border-bottom: 8px solid #002752; text-align: center; }
-        .header-logo-img { width: 100%; max-width: 1200px; height: auto; display: block; margin: 0 auto; }
+        body { font-family: 'Arial Black', sans-serif; margin: 0; padding: 0; background: #fff; color: #000; }
         
-        .hero { background: #002752; color: #fff; padding: 40px 20px; text-align: center; }
-        .hero h2 { color: #FFCD00; margin: 0; text-transform: uppercase; font-size: 24px; }
-        .hero p { margin: 8px 0 0; font-size: 16px; font-family: 'Arial', sans-serif; font-weight: bold; color: #f4f4f4; }
+        header { 
+            background: #FFCD00; 
+            width: 100%;
+            overflow: hidden;
+            border-bottom: 8px solid #002752; 
+        }
+        .header-logo-img {
+            width: 100%;
+            max-width: 1200px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
 
-        .seccion-empresa { max-width: 1000px; margin: 40px auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; font-family: 'Arial', sans-serif; }
-        .empresa-card { border-left: 5px solid #FFCD00; padding-left: 15px; }
-        .empresa-card h3 { color: #002752; text-transform: uppercase; margin-top: 0; }
+        .nosotros { background: #002752; color: #fff; padding: 50px 20px; text-align: center; }
+        .nosotros h2 { color: #FFCD00; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; font-size: 28px; }
+        .nosotros p { max-width: 850px; margin: 0 auto; line-height: 1.6; font-size: 19px; font-family: 'Arial', sans-serif; font-weight: bold; }
 
-        /* FORMULARIO DE COTIZACIÓN (OCULTO INICIALMENTE) */
-        .cotizador-container { max-width: 650px; margin: 40px auto; background: #f4f4f4; border: 5px solid #002752; padding: 30px; border-radius: 20px; font-family: 'Arial', sans-serif; display: none; scroll-margin-top: 20px; }
+        /* CALCULADORA CON ZONAS ESPECÍFICAS */
+        .cotizador-container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #f4f4f4;
+            border: 5px solid #FFCD00;
+            padding: 25px;
+            border-radius: 15px;
+            font-family: 'Arial', sans-serif;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .cotizador-container h3 { text-align: center; color: #002752; text-transform: uppercase; margin-top: 0; font-family: 'Arial Black'; }
         .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 13px; color: #002752; text-transform: uppercase; }
-        .form-group input, .form-group select { width: 100%; padding: 12px; border: 2px solid #002752; border-radius: 8px; font-weight: bold; box-sizing: border-box; font-size: 15px; }
-
-        .btn-calcular { width: 100%; background: #002752; color: #FFCD00; padding: 20px; border: none; font-weight: 900; text-transform: uppercase; cursor: pointer; font-size: 18px; border-radius: 8px; margin-top: 10px; }
+        .form-group label { display: block; font-weight: bold; margin-bottom: 5px; color: #333; }
+        .form-group select, .form-group input { width: 100%; padding: 12px; border: 2px solid #002752; border-radius: 5px; font-weight: bold; font-size: 16px; box-sizing: border-box; }
         
-        #res-box { margin-top: 20px; padding: 20px; background: #fff; border: 4px solid #25D366; border-radius: 15px; text-align: center; display: none; }
-        
-        .botones-confirmar { display: flex; gap: 10px; margin-top: 20px; }
-        .btn-confirmar { flex: 1; background: #25D366; color: white; padding: 15px; text-decoration: none; text-align: center; border-radius: 8px; font-weight: bold; text-transform: uppercase; }
-        .btn-rechazar { flex: 1; background: #FF3B30; color: white; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        .btn-calcular { width: 100%; background: #000; color: #FFCD00; padding: 18px; border: none; font-weight: 900; text-transform: uppercase; cursor: pointer; border-radius: 5px; font-size: 18px; transition: 0.3s; }
+        .btn-calcular:hover { background: #FFCD00; color: #000; }
 
-        /* INVENTARIO */
-        .seccion-equipos { padding: 50px 20px; max-width: 1200px; margin: 0 auto; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-        .card { border: 3px solid #002752; display: flex; flex-direction: column; text-align: center; background: #fff; border-radius: 10px; overflow: hidden; }
-        .card img { width: 100%; height: 200px; object-fit: contain; padding: 10px; }
-        .card h4 { background: #002752; color: #FFCD00; margin: 0; padding: 12px; text-transform: uppercase; font-size: 14px; }
-        .card p { font-family: 'Arial', sans-serif; padding: 15px; font-size: 13px; font-weight: bold; flex-grow: 1; }
-        
-        /* BOTONES DE TARJETA */
-        .card-actions { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid #002752; }
-        .btn-card-cotizar { background: #FFCD00; border: none; padding: 12px; font-weight: bold; cursor: pointer; text-transform: uppercase; border-right: 1px solid #002752; }
-        .btn-card-wa { background: #25D366; color: white; text-decoration: none; padding: 12px; font-weight: bold; text-transform: uppercase; display: flex; align-items: center; justify-content: center; }
+        #res-box { margin-top: 20px; padding: 20px; background: #fff; border: 3px solid #002752; display: none; border-radius: 10px; }
+        .btns-decision { display: flex; gap: 10px; margin-top: 20px; }
+        .btn-si { flex: 1; background: #25D366; color: white; padding: 15px; border: none; font-weight: bold; cursor: pointer; text-decoration: none; text-align: center; border-radius: 5px; text-transform: uppercase; }
+        .btn-no { flex: 1; background: #d9534f; color: white; padding: 15px; border: none; font-weight: bold; cursor: pointer; border-radius: 5px; text-transform: uppercase; }
 
-        footer { background: #000; color: #fff; padding: 50px 20px; border-top: 8px solid #FFCD00; margin-top: 50px; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; font-family: 'Arial', sans-serif; }
-        .footer-item h3 { color: #FFCD00; text-transform: uppercase; margin-bottom: 20px; }
-        .horario-lista { list-style: none; padding: 0; }
-        .horario-lista li { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #333; }
+        /* CATÁLOGO */
+        .seccion-equipos { padding: 60px 20px; max-width: 1300px; margin: 0 auto; }
+        .titulo-seccion { text-align: center; margin-bottom: 20px; text-transform: uppercase; font-size: 32px; border-left: 10px solid #FFCD00; border-right: 10px solid #002752; padding: 0 15px; display: inline-block; color: #002752; }
+        .nota-flete { text-align: center; background: #002752; color: #FFCD00; padding: 10px; margin-bottom: 40px; font-size: 1.1em; border-radius: 5px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
+        .card { border: 4px solid #002752; background: #fff; position: relative; transition: 0.3s; display: flex; flex-direction: column; overflow: hidden; }
+        .card:hover { border-color: #FFCD00; transform: translateY(-8px); }
+        .card-img { width: 100%; height: 280px; object-fit: contain; border-bottom: 4px solid #FFCD00; background: #fdfdfd; }
+        .card-header-kg { background: #333; color: #FFCD00; padding: 20px; text-align: center; border-bottom: 5px solid #002752; }
+        .card-header-vibrador { background: #002752; color: #FFCD00; padding: 20px; text-align: center; border-bottom: 5px solid #FFCD00; }
+        .modelo-txt { font-weight: 900; font-size: 1.3em; text-transform: uppercase; }
+        .card-specs-bar { background: #FFCD00; color: #002752; padding: 12px; text-align: center; font-weight: 900; }
+        .precio-container { background: #000; color: #FFCD00; padding: 10px; text-align: center; }
+        .precio-tag { display: block; font-size: 1.4em; }
+        .card-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; font-family: 'Arial', sans-serif; }
+        .ideal-list { list-style: none; padding: 0; margin: 15px 0 25px 0; font-weight: bold; }
+        .icon-usage { color: #fff; background: #002752; padding: 2px 8px; border-radius: 3px; margin-right: 5px; }
+        .icon-usage-v { color: #000; background: #FFCD00; padding: 2px 8px; border-radius: 3px; margin-right: 5px; }
+        .btn-rentar { display: block; background: #002752; color: #FFCD00; text-align: center; padding: 18px; text-decoration: none; font-weight: 900; text-transform: uppercase; }
+
+        .footer-info { background: #000; color: #fff; padding: 60px 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; text-align: center; }
+        .ws-flotante { position: fixed; bottom: 25px; right: 25px; background-color: #25D366; color: #FFF; padding: 18px 30px; border-radius: 50px; text-decoration: none; font-weight: 900; z-index: 9999; display: flex; align-items: center; gap: 12px; }
     </style>
 </head>
 <body>
 
-<header><img src="logotipo1.png" alt="G-A-P Renta de Rompedoras" class="header-logo-img"></header>
+    <header>
+        <img src="logotipo1.png" alt="Logo G-A-P" class="header-logo-img">
+    </header>
 
-<section class="hero">
-    <h2>CALIDAD Y POTENCIA EN CADA OBRA</h2>
-    <p>Renta de Rompedoras y Vibradores en todo Nuevo León</p>
-</section>
+    <section class="nosotros">
+        <h2>Especialistas en Equipo Ligero</h2>
+        <p>Tu aliado estratégico en Juárez, Guadalupe, Apodaca, San Nicolás y Monterrey.</p>
+    </section>
 
-<section class="seccion-empresa">
-    <div class="empresa-card">
-        <h3>Nuestra Misión</h3>
-        <p>Proveer maquinaria de alta eficiencia, garantizando la continuidad de sus obras mediante equipos en excelente estado y un servicio logístico puntual.</p>
-    </div>
-    <div class="empresa-card">
-        <h3>Nuestra Visión</h3>
-        <p>Ser el aliado estratégico número uno en Nuevo León, destacando por nuestra seriedad, calidad técnica y respuesta inmediata.</p>
-    </div>
-    <div class="empresa-card">
-        <h3>Valores</h3>
-        <p>Puntualidad, Honestidad en costos y Compromiso con la seguridad de su proyecto.</p>
-    </div>
-</section>
-
-<div class="cotizador-container" id="cotizador">
-    <h2 style="text-align:center; color:#002752; margin-top:0;">DATOS DE TU RENTA</h2>
-    
-    <div class="form-group">
-        <label>Nombre Completo:</label>
-        <input type="text" id="nombre" placeholder="¿A quién dirigimos la cotización?">
-    </div>
-
-    <div class="form-group">
-        <label>Dirección de la Obra:</label>
-        <input type="text" id="direccion" placeholder="Calle y número">
-    </div>
-
-    <div class="form-group">
-        <label>Municipio (Zona de entrega):</label>
-        <select id="zona">
-            <option value="150">Zona 1: Juárez</option>
-            <option value="200">Zona 2: Guadalupe</option>
-            <option value="250">Zona 3: Apodaca</option>
-            <option value="300">Zona 4: San Nicolás</option>
-            <option value="350">Zona 5: Monterrey Centro / Sur</option>
-            <option value="450">Zona 6: Monterrey Norte / Cumbres</option>
-            <option value="500">Zona 7: San Pedro / Santa Catarina</option>
-            <option value="600">Zona 8: García / Santiago / Cadereyta</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label>Equipo Seleccionado:</label>
-        <select id="equipo">
-            <option value="300">Rompedora 8kg ($300)</option>
-            <option value="300">Rompedora 12kg ($300)</option>
-            <option value="350">Rompedora 15kg ($350)</option>
-            <option value="400">Rompedora 25kg ($400)</option>
-            <option value="450">Rompedora 27kg ($450)</option>
-            <option value="300">Vibrador Eléctrico CAT ($300)</option>
-            <option value="300">Vibrador V1 ($300)</option>
-            <option value="200">Vibrador V2 ($200)</option>
-            <option value="200">Vibrador V3 ($200)</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label>Días de Renta:</label>
-        <input type="number" id="dias" value="1" min="1">
-    </div>
-
-    <div class="form-group">
-        <label>Teléfono (WhatsApp):</label>
-        <input type="tel" id="telefono" placeholder="10 dígitos">
-    </div>
-
-    <button class="btn-calcular" onclick="calcularTotal()">Calcular Presupuesto</button>
-
-    <div id="res-box">
-        <h3 style="margin:0; color:#002752;">TOTAL A PAGAR</h3>
-        <p id="detalles-final" style="font-size: 14px; margin: 10px 0;"></p>
-        <div style="background:#002752; color:#FFCD00; padding:15px; border-radius:10px;">
-            <strong style="font-size:32px;">$<span id="total-monto"></span></strong>
+    <section id="cotizador" class="cotizador-container">
+        <h3>Calculadora de Cotización</h3>
+        
+        <div class="form-group">
+            <label>Equipo que necesita:</label>
+            <select id="cot-equipo">
+                <option value="300">Rompedora 8kg ($300)</option>
+                <option value="300">Rompedora 12kg ($300)</option>
+                <option value="350">Rompedora 15kg ($350)</option>
+                <option value="400">Rompedora 25kg ($400)</option>
+                <option value="450">Rompedora 27kg ($450)</option>
+                <option value="300">Vibrador CAT ($300)</option>
+                <option value="300">Vibrador V1 ($300)</option>
+                <option value="200">Vibrador V2 ($200)</option>
+                <option value="200">Vibrador V3 ($200)</option>
+            </select>
         </div>
-        <div class="botones-confirmar">
-            <a href="#" id="wa-link" class="btn-confirmar">CONFIRMAR PEDIDO</a>
-            <button class="btn-rechazar" onclick="document.getElementById('res-box').style.display='none'">EDITAR</button>
-        </div>
-    </div>
-</div>
 
-<section class="seccion-equipos">
-    <h2>NUESTRO INVENTARIO</h2>
-    <div class="grid">
-        <div class="card"><h4>Rompedora 8kg</h4><img src="8.jpg"><p>Ideal para muros y ranurado.</p>
-            <div class="card-actions">
-                <button class="btn-card-cotizar" onclick="activarCotizador(0)">Cotizar</button>
-                <a href="https://wa.me/528119988053" class="btn-card-wa">WhatsApp</a>
+        <div class="form-group">
+            <label>Días de renta:</label>
+            <input type="number" id="cot-dias" value="1" min="1">
+        </div>
+
+        <div class="form-group">
+            <label>Ubicación (Zona de entrega):</label>
+            <select id="cot-zona-flete">
+                <optgroup label="Juárez">
+                    <option value="100">Juárez Centro y alrededores ($100)</option>
+                    <option value="150">Juárez Zona Teofilo Salinas / San Mateo ($150)</option>
+                </optgroup>
+                <optgroup label="Guadalupe">
+                    <option value="250">Guadalupe Contry y alrededores ($250)</option>
+                    <option value="250">Guadalupe Zona Expo y alrededores ($250)</option>
+                    <option value="200">Guadalupe Zona Santa Cruz y alrededores ($200)</option>
+                    <option value="200">Guadalupe Zona Dos Ríos ($200)</option>
+                </optgroup>
+                <optgroup label="Monterrey">
+                    <option value="400">Monterrey Centro / Barrio Antiguo ($400)</option>
+                    <option value="500">Monterrey Zona Cumbres ($500)</option>
+                    <option value="450">Monterrey Zona Sur / Carretera Nal. ($450)</option>
+                </optgroup>
+                <optgroup label="Otros Municipios">
+                    <option value="300">Apodaca Centro y alrededores ($300)</option>
+                    <option value="300">San Nicolás (La Fe / Sendero) ($300)</option>
+                    <option value="250">Cadereyta Centro ($250)</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Colonia / Referencia exacta:</label>
+            <input type="text" id="cot-colonia" placeholder="Ej: Col. Las Lomas, Calle Juárez #123">
+        </div>
+
+        <button class="btn-calcular" onclick="realizarCalculo()">Calcular Costo Total</button>
+
+        <div id="res-box">
+            <p>Equipo: <strong id="res-nom-equipo"></strong></p>
+            <p>Renta por días: <strong>$<span id="res-renta"></span></strong></p>
+            <p>Flete a Zona: <strong>$<span id="res-flete"></span></strong></p>
+            <hr>
+            <h4 style="margin: 0; color: #002752; font-size: 22px;">Total a Pagar: $<span id="res-total"></span></h4>
+            
+            <div class="btns-decision">
+                <a href="#" id="btn-whatsapp-cot" target="_blank" class="btn-si">ACEPTAR</a>
+                <button class="btn-no" onclick="cerrarRes()">RECHAZAR</button>
             </div>
         </div>
-        <div class="card"><h4>Rompedora 15kg</h4><img src="15.jpg"><p>Potencia para firmes y banquetas.</p>
-            <div class="card-actions">
-                <button class="btn-card-cotizar" onclick="activarCotizador(2)">Cotizar</button>
-                <a href="https://wa.me/528119988053" class="btn-card-wa">WhatsApp</a>
+    </section>
+
+    <main class="seccion-equipos">
+        <div style="text-align: center;"><h2 class="titulo-seccion">Catálogo de Rompedoras</h2></div>
+        
+        <div class="nota-flete">
+            <strong>ENTREGA A DOMICILIO:</strong> Selecciona tu zona en la calculadora para conocer el costo de flete.
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <div class="card-header-kg"><span class="modelo-txt">Rompedora de 8 KG</span></div>
+                <img src="8.jpg" alt="Rompedora 8kg" class="card-img">
+                <div class="card-specs-bar">720 Watts | 6 Joules</div>
+                <div class="precio-container"><span class="precio-tag">$300 / 24 hrs</span></div>
+                <div class="card-body">
+                    <ul class="ideal-list">
+                        <li><span class="icon-usage">GAP</span> Orificios con broca</li>
+                        <li><span class="icon-usage">GAP</span> Ranuras en pared</li>
+                    </ul>
+                    <a href="#cotizador" class="btn-rentar" onclick="seleccionarEquipo('300')">Cotizar Equipo</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header-kg"><span class="modelo-txt">Rompedora de 12 KG</span></div>
+                <img src="12.jpg" alt="Rompedora 12kg" class="card-img">
+                <div class="card-specs-bar">960 Watts | 12 Joules</div>
+                <div class="precio-container"><span class="precio-tag">$300 / 24 hrs</span></div>
+                <div class="card-body">
+                    <ul class="ideal-list">
+                        <li><span class="icon-usage">GAP</span> Quitar vitropiso</li>
+                        <li><span class="icon-usage">GAP</span> Demolición media</li>
+                    </ul>
+                    <a href="#cotizador" class="btn-rentar" onclick="seleccionarEquipo('300')">Cotizar Equipo</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header-kg"><span class="modelo-txt">Rompedora de 15 KG</span></div>
+                <img src="15.jpg" alt="Rompedora 15kg" class="card-img">
+                <div class="card-specs-bar">1200 Watts | 25 Joules</div>
+                <div class="precio-container"><span class="precio-tag">$350 / 24 hrs</span></div>
+                <div class="card-body">
+                    <ul class="ideal-list">
+                        <li><span class="icon-usage">GAP</span> Muros y vigas</li>
+                        <li><span class="icon-usage">GAP</span> Contra cimientos</li>
+                    </ul>
+                    <a href="#cotizador" class="btn-rentar" onclick="seleccionarEquipo('350')">Cotizar Equipo</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header-kg"><span class="modelo-txt">Rompedora de 25 KG</span></div>
+                <img src="25.jpg" alt="Rompedora 25kg" class="card-img">
+                <div class="card-specs-bar">1800 Watts | 60 Joules</div>
+                <div class="precio-container"><span class="precio-tag">$400 / 24 hrs</span></div>
+                <div class="card-body">
+                    <ul class="ideal-list">
+                        <li><span class="icon-usage">GAP</span> Pisos y banquetas</li>
+                        <li><span class="icon-usage">GAP</span> Losas de concreto</li>
+                    </ul>
+                    <a href="#cotizador" class="btn-rentar" onclick="seleccionarEquipo('400')">Cotizar Equipo</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header-kg"><span class="modelo-txt">Rompedora de 27 KG</span></div>
+                <img src="27.jpg" alt="Rompedora 27kg" class="card-img">
+                <div class="card-specs-bar">2100 Watts | 70 Joules</div>
+                <div class="precio-container"><span class="precio-tag">$450 / 24 hrs</span></div>
+                <div class="card-body">
+                    <ul class="ideal-list">
+                        <li><span class="icon-usage">GAP</span> Asfalto y piedras</li>
+                        <li><span class="icon-usage">GAP</span> Zapatas y drenaje</li>
+                    </ul>
+                    <a href="#cotizador" class="btn-rentar" onclick="seleccionarEquipo('450')">Cotizar Equipo</a>
+                </div>
             </div>
         </div>
-        <div class="card"><h4>Rompedora 27kg</h4><img src="27.jpg"><p>Uso industrial rudo.</p>
-            <div class="card-actions">
-                <button class="btn-card-cotizar" onclick="activarCotizador(4)">Cotizar</button>
-                <a href="https://wa.me/528119988053" class="btn-card-wa">WhatsApp</a>
+
+        <div style="text-align: center; margin-top: 80px;"><h2 class="titulo-seccion">Vibradores de Concreto</h2></div>
+        <div class="grid">
+            <div class="card">
+                <div class="card-header-vibrador"><span class="modelo-txt">Vibrador Eléctrico CAT</span></div>
+                <img src="Vibrador.jpg" alt="Vibrador Amarillo" class="card-img">
+                <div class="card-specs-bar">1.5 HP | Alta Frecuencia</div>
+                <div class="precio-container"><span class="precio-tag">$300 / 24 hrs</span></div>
+                <div class="card-body">
+                    <ul class="ideal-list">
+                        <li><span class="icon-usage-v">GAP</span> Compactación de losas</li>
+                        <li><span class="icon-usage-v">GAP</span> Acabado profesional</li>
+                    </ul>
+                    <a href="#cotizador" class="btn-rentar" onclick="seleccionarEquipo('300')">Cotizar Ahora</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header-vibrador"><span class="modelo-txt">Vibrador Portátil V1</span></div>
+                <img src="vibrador1.jpg" alt="Vibrador 1" class="card-img">
+                <div class="card-specs-bar">Chicote Reforzado</div>
+                <div class="precio-container"><span class="precio-tag">$300 / 24 hrs</span></div>
+                <div class="card-body">
+                    <ul class="ideal-list">
+                        <li><span class="icon-usage-v">GAP</span> Ideal para castillos</li>
+                        <li><span class="icon-usage-v">GAP</span> Fácil manejo</li>
+                    </ul>
+                    <a href="#cotizador" class="btn-rentar" onclick="seleccionarEquipo('300')">Cotizar Ahora</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header-vibrador"><span class="modelo-txt">Vibrador Industrial V2</span></div>
+                <img src="vibrador2.jpg" alt="Vibrador 2" class="card-img">
+                <div class="card-specs-bar">Uso Heavy Duty</div>
+                <div class="precio-container"><span class="precio-tag">$200 / 24 hrs</span></div>
+                <div class="card-body">
+                    <ul class="ideal-list">
+                        <li><span class="icon-usage-v">GAP</span> Motores de alto rendimiento</li>
+                    </ul>
+                    <a href="#cotizador" class="btn-rentar" onclick="seleccionarEquipo('200')">Cotizar Ahora</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header-vibrador"><span class="modelo-txt">Vibrador de Precisión V3</span></div>
+                <img src="vibrador3.jpg" alt="Vibrador 3" class="card-img">
+                <div class="card-specs-bar">Cabezal de Acero</div>
+                <div class="precio-container"><span class="precio-tag">$200 / 24 hrs</span></div>
+                <div class="card-body">
+                    <ul class="ideal-list">
+                        <li><span class="icon-usage-v">GAP</span> Máxima eliminación de aire</li>
+                    </ul>
+                    <a href="#cotizador" class="btn-rentar" onclick="seleccionarEquipo('200')">Cotizar Ahora</a>
+                </div>
             </div>
         </div>
-        <div class="card"><h4>Vibrador CAT</h4><img src="Vibrador.jpg"><p>Alta frecuencia profesional.</p>
-            <div class="card-actions">
-                <button class="btn-card-cotizar" onclick="activarCotizador(5)">Cotizar</button>
-                <a href="https://wa.me/528119988053" class="btn-card-wa">WhatsApp</a>
-            </div>
+    </main>
+
+    <footer class="footer-info">
+        <div>
+            <h4>Zonas de Cobertura</h4>
+            <p>Juárez | Guadalupe | Apodaca | San Nicolás | Monterrey | Cadereyta</p>
         </div>
-    </div>
-</section>
-
-<footer>
-    <div class="footer-grid">
-        <div class="footer-item">
-            <h3>G-A-P Renta</h3>
-            <p><strong>WhatsApp:</strong> 8119988053</p>
-            <p><strong>Base:</strong> Valle Sur, Juárez, N.L.</p>
+        <div>
+            <h4>Horarios</h4>
+            <p>Lunes a Viernes: 8:00 am - 8:00 pm</p>
+            <p class="horario-domingo">Domingo: 9:00 am - 2:00 pm</p>
         </div>
-        <div class="footer-item">
-            <h3>Horarios</h3>
-            <ul class="horario-lista">
-                <li>Lun-Vie <span>08:00-20:00</span></li>
-                <li>Sáb <span>09:00-17:00</span></li>
-                <li>Dom <span>09:00-14:00</span></li>
-            </ul>
-        </div>
-    </div>
-</footer>
+    </footer>
 
-<script>
-    function activarCotizador(index) {
-        document.getElementById('cotizador').style.display = 'block';
-        document.getElementById('equipo').selectedIndex = index;
-        document.getElementById('cotizador').scrollIntoView({ behavior: 'smooth' });
-    }
+    <a href="https://wa.me/528119988053" class="ws-flotante" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="25" alt="WhatsApp">
+        811-998-80-53
+    </a>
 
-    function calcularTotal() {
-        const nom = document.getElementById('nombre').value;
-        const dir = document.getElementById('direccion').value;
-        const tel = document.getElementById('telefono').value;
-        const dias = parseInt(document.getElementById('dias').value);
-        const flete = parseFloat(document.getElementById('zona').value);
-        const zNom = document.getElementById('zona').options[document.getElementById('zona').selectedIndex].text;
-        const eSelect = document.getElementById('equipo');
-        const eNom = eSelect.options[eSelect.selectedIndex].text;
-        const precioEquipo = parseFloat(eSelect.value);
+    <script>
+        function realizarCalculo() {
+            const precioBase = parseFloat(document.getElementById('cot-equipo').value);
+            const dias = parseInt(document.getElementById('cot-dias').value);
+            const flete = parseFloat(document.getElementById('cot-zona-flete').value);
+            
+            const equipoTexto = document.getElementById('cot-equipo').options[document.getElementById('cot-equipo').selectedIndex].text;
+            const zonaTexto = document.getElementById('cot-zona-flete').options[document.getElementById('cot-zona-flete').selectedIndex].text;
+            const colonia = document.getElementById('cot-colonia').value || "No especificada";
 
-        if(!nom || !dir || !tel) { alert("Por favor completa todos los datos."); return; }
+            const totalRenta = precioBase * dias;
+            const granTotal = totalRenta + flete;
 
-        const total = (precioEquipo * dias) + flete;
+            document.getElementById('res-nom-equipo').innerText = equipoTexto;
+            document.getElementById('res-renta').innerText = totalRenta;
+            document.getElementById('res-flete').innerText = flete;
+            document.getElementById('res-total').innerText = granTotal;
+            document.getElementById('res-box').style.display = 'block';
 
-        document.getElementById('detalles-final').innerHTML = `
-            ${eNom} x ${dias} día(s)<br>
-            Entrega en: ${zNom.split(':')[1]}
-        `;
-        document.getElementById('total-monto').innerText = total;
-        document.getElementById('res-box').style.display = 'block';
+            const mensaje = encodeURIComponent(
+                `Hola GAP, me interesa rentar:\n` +
+                `- Equipo: ${equipoTexto}\n` +
+                `- Días: ${dias}\n` +
+                `- Zona Seleccionada: ${zonaTexto}\n` +
+                `- Referencia: ${colonia}\n` +
+                `- Total a pagar: $${granTotal}`
+            );
+            document.getElementById('btn-whatsapp-cot').href = `https://wa.me/528119988053?text=${mensaje}`;
+            
+            document.getElementById('res-box').scrollIntoView({ behavior: 'smooth' });
+        }
 
-        const msj = `*PEDIDO G-A-P*\n*Cliente:* ${nom}\n*Dirección:* ${dir}\n*Tel:* ${tel}\n*Equipo:* ${eNom}\n*Días:* ${dias}\n*Zona:* ${zNom}\n*TOTAL:* $${total}`;
-        document.getElementById('wa-link').href = `https://wa.me/528119988053?text=${encodeURIComponent(msj)}`;
-    }
-</script>
+        function cerrarRes() {
+            document.getElementById('res-box').style.display = 'none';
+        }
 
+        function seleccionarEquipo(valor) {
+            document.getElementById('cot-equipo').value = valor;
+        }
+    </script>
 </body>
 </html>
