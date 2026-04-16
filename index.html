@@ -9,7 +9,6 @@
     <link rel="icon" type="image/png" href="favicon.png">
 
     <style>
-        /* PALETA DE COLORES ORIGINAL: Amarillo CAT (#FFCD00), Negro (#000000), Azul Industrial (#002752) */
         body { font-family: 'Arial Black', sans-serif; margin: 0; padding: 0; background: #fff; color: #000; }
         
         header { 
@@ -30,7 +29,7 @@
         .nosotros h2 { color: #FFCD00; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; font-size: 28px; }
         .nosotros p { max-width: 850px; margin: 0 auto; line-height: 1.6; font-size: 19px; font-family: 'Arial', sans-serif; font-weight: bold; }
 
-        /* ESTILOS DE LA CALCULADORA */
+        /* CALCULADORA PROFESIONAL */
         .cotizador-container {
             max-width: 600px;
             margin: 40px auto;
@@ -45,7 +44,6 @@
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-weight: bold; margin-bottom: 5px; color: #333; }
         .form-group select, .form-group input { width: 100%; padding: 12px; border: 2px solid #002752; border-radius: 5px; font-weight: bold; font-size: 16px; box-sizing: border-box; }
-        .info-flete { font-size: 0.85em; color: #666; font-style: italic; margin-top: 5px; display: block; }
         
         .btn-calcular { width: 100%; background: #000; color: #FFCD00; padding: 18px; border: none; font-weight: 900; text-transform: uppercase; cursor: pointer; border-radius: 5px; font-size: 18px; transition: 0.3s; }
         .btn-calcular:hover { background: #FFCD00; color: #000; }
@@ -55,7 +53,7 @@
         .btn-si { flex: 1; background: #25D366; color: white; padding: 15px; border: none; font-weight: bold; cursor: pointer; text-decoration: none; text-align: center; border-radius: 5px; text-transform: uppercase; }
         .btn-no { flex: 1; background: #d9534f; color: white; padding: 15px; border: none; font-weight: bold; cursor: pointer; border-radius: 5px; text-transform: uppercase; }
 
-        /* ESTILOS ORIGINALES DEL CATÁLOGO */
+        /* CATÁLOGO */
         .seccion-equipos { padding: 60px 20px; max-width: 1300px; margin: 0 auto; }
         .titulo-seccion { text-align: center; margin-bottom: 20px; text-transform: uppercase; font-size: 32px; border-left: 10px solid #FFCD00; border-right: 10px solid #002752; padding: 0 15px; display: inline-block; color: #002752; }
         .nota-flete { text-align: center; background: #002752; color: #FFCD00; padding: 10px; margin-bottom: 40px; font-size: 1.1em; border-radius: 5px; }
@@ -115,14 +113,23 @@
         </div>
 
         <div class="form-group">
-            <label>Distancia desde Juárez (KM):</label>
-            <input type="number" id="cot-km" value="0" min="0" placeholder="Ej: 10">
-            <span class="info-flete">Tarifa: $15 por km desde nuestra ubicación.</span>
+            <label>Zona de entrega:</label>
+            <select id="cot-flete">
+                <option value="0">Juárez (Local)</option>
+                <option value="150">Juárez - Zonas lejanas ($150)</option>
+                <option value="225">Guadalupe - Eloy Cavazos ($225)</option>
+                <option value="300">Guadalupe - Centro / Linda Vista ($300)</option>
+                <option value="375">Apodaca ($375)</option>
+                <option value="450">Monterrey - Centro ($450)</option>
+                <option value="600">Monterrey - Poniente / Sur ($600)</option>
+                <option value="300">San Nicolás ($300)</option>
+                <option value="250">Cadereyta ($250)</option>
+            </select>
         </div>
 
         <div class="form-group">
-            <label>Colonia / Sector / Municipio:</label>
-            <input type="text" id="cot-colonia" placeholder="Ej: Casa Blanca, Guadalupe">
+            <label>Colonia / Sector exacto:</label>
+            <input type="text" id="cot-colonia" placeholder="Ej: Las Lomas">
         </div>
 
         <button class="btn-calcular" onclick="realizarCalculo()">Calcular Costo Total</button>
@@ -130,7 +137,7 @@
         <div id="res-box">
             <p>Equipo: <strong id="res-nom-equipo"></strong></p>
             <p>Renta por días: <strong>$<span id="res-renta"></span></strong></p>
-            <p>Flete (<span id="res-dist-km"></span> km): <strong>$<span id="res-flete"></span></strong></p>
+            <p>Costo de Envío: <strong>$<span id="res-flete"></span></strong></p>
             <hr>
             <h4 style="margin: 0; color: #002752; font-size: 22px;">Total a Pagar: $<span id="res-total"></span></h4>
             
@@ -145,7 +152,7 @@
         <div style="text-align: center;"><h2 class="titulo-seccion">Catálogo de Rompedoras</h2></div>
         
         <div class="nota-flete">
-            <strong>AVISO IMPORTANTE:</strong> El costo del flete se calcula a $15 por kilómetro desde nuestra ubicación en Juárez.
+            <strong>AVISO IMPORTANTE:</strong> El costo del flete depende de la zona de entrega.
         </div>
 
         <div class="grid">
@@ -297,40 +304,36 @@
 
     <script>
         function realizarCalculo() {
-            // Valores de entrada
             const precioBase = parseFloat(document.getElementById('cot-equipo').value);
             const dias = parseInt(document.getElementById('cot-dias').value);
-            const kilometros = parseFloat(document.getElementById('cot-km').value) || 0;
+            const costoFlete = parseFloat(document.getElementById('cot-flete').value);
+            
             const equipoTexto = document.getElementById('cot-equipo').options[document.getElementById('cot-equipo').selectedIndex].text;
+            const zonaTexto = document.getElementById('cot-flete').options[document.getElementById('cot-flete').selectedIndex].text;
             const colonia = document.getElementById('cot-colonia').value || "No especificada";
 
-            // Lógica de costo: $15 por km
-            const costoFlete = kilometros * 15;
             const totalRenta = precioBase * dias;
             const granTotal = totalRenta + costoFlete;
 
-            // Mostrar resultados en la caja blanca
             document.getElementById('res-nom-equipo').innerText = equipoTexto;
             document.getElementById('res-renta').innerText = totalRenta;
-            document.getElementById('res-dist-km').innerText = kilometros;
             document.getElementById('res-flete').innerText = costoFlete;
             document.getElementById('res-total').innerText = granTotal;
             document.getElementById('res-box').style.display = 'block';
 
-            // Preparar mensaje para WhatsApp
+            // El mensaje de WhatsApp ya lleva el desglose profesional sin mencionar los 15 pesos
             const mensaje = encodeURIComponent(
-                `Hola GAP, me interesa rentar:\n` +
+                `Hola GAP, solicito cotización:\n` +
                 `- Equipo: ${equipoTexto}\n` +
-                `- Días: ${dias}\n` +
-                `- Ubicación: ${colonia}\n` +
-                `- Distancia: ${kilometros} km\n` +
-                `- Costo Renta: $${totalRenta}\n` +
-                `- Costo Flete ($15/km): $${costoFlete}\n` +
-                `- Total a pagar: $${granTotal}`
+                `- Tiempo: ${dias} día(s)\n` +
+                `- Zona: ${zonaTexto}\n` +
+                `- Colonia: ${colonia}\n` +
+                `- Renta: $${totalRenta}\n` +
+                `- Envío: $${costoFlete}\n` +
+                `- TOTAL: $${granTotal}`
             );
             document.getElementById('btn-whatsapp-cot').href = `https://wa.me/528119988053?text=${mensaje}`;
             
-            // Desplazar la vista al resultado
             document.getElementById('res-box').scrollIntoView({ behavior: 'smooth' });
         }
 
