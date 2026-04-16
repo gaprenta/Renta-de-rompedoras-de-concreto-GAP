@@ -46,7 +46,7 @@
 
 <section class="hero">
     <h2>Líderes en Renta de Rompedoras y Vibradores de Concreto</h2>
-    <p>Potencia, Eficiencia y Compromiso en cada Obra. Somos tu aliado en Juárez, Guadalupe, Apodaca, San Nicolás y Monterrey.</p>
+    <p>Especialistas en Maquinaria: Potencia y Puntualidad en su Obra.</p>
 </section>
 
 <div class="cotizador-container" id="form-pedidos">
@@ -56,41 +56,27 @@
     </div>
     
     <div class="form-group">
-        <label>Zona de Entrega:</label>
+        <label>Ubicación de la Obra (Municipio y Zona):</label>
         <select id="zona">
-            <option value="0" disabled selected>-- Selecciona tu Zona/Colonia --</option>
-            <optgroup label="JUÁREZ (Radio 0-7km: $200)">
-                <option value="200">Valle Sur / Real de Juárez</option>
-                <option value="200">Santa Mónica / Acueducto</option>
-                <option value="200">Juárez Centro</option>
-                <option value="200">Colonia San Roque</option>
+            <option value="0" disabled selected>-- Seleccione Ubicación --</option>
+            <optgroup label="JUÁREZ (Base Valle Sur)">
+                <option value="200">Todo Juárez - $200</option>
             </optgroup>
-            <optgroup label="GUADALUPE (Radio 7-21km: $250 - $300)">
-                <option value="250">Dos Ríos / El Porvenir ($250)</option>
-                <option value="250">E. Cavazos (Paseo Gpe) ($250)</option>
-                <option value="300">Lindavista / La Pastora ($300)</option>
-                <option value="300">Contry La Silla ($300)</option>
+            <optgroup label="GUADALUPE">
+                <option value="250">Guadalupe Zona Oriente (Dos Ríos, Eloy Cavazos) - $250</option>
+                <option value="350">Guadalupe Zona Poniente (Contry, Lindavista) - $350</option>
             </optgroup>
-            <optgroup label="APODACA (Radio 14-28km: $300 - $400)">
-                <option value="300">Huinalá / Pueblo Nuevo ($300)</option>
-                <option value="400">Centro de Apodaca ($400)</option>
-                <option value="400">Zona Aeropuerto ($400)</option>
-                <option value="400">Santa Rosa ($400)</option>
+            <optgroup label="APODACA">
+                <option value="300">Apodaca Sur (Huinalá, Pueblo Nuevo) - $300</option>
+                <option value="400">Apodaca Centro / Norte (Santa Rosa) - $400</option>
             </optgroup>
-            <optgroup label="MONTERREY (Radio 21-35km: $400 - $450)">
-                <option value="400">Monterrey Centro ($400)</option>
-                <option value="400">Zona Tec ($400)</option>
-                <option value="450">San Jerónimo ($450)</option>
-                <option value="450">Cumbres (Sectores bajos) ($450)</option>
-                <option value="500">Cumbres García / Dominio ($500)</option>
-            </optgroup>
-            <optgroup label="SAN NICOLÁS / ESCOBEDO (Radio 21-35km: $400 - $450)">
-                <option value="400">Zona La Fe ($400)</option>
-                <option value="400">Las Puentes ($400)</option>
-                <option value="450">Anáhuac / Universidad ($450)</option>
-                <option value="450">Escobedo Centro / Sendero ($450)</option>
+            <optgroup label="MONTERREY / SAN NICOLÁS">
+                <option value="400">Monterrey Centro / Zona Tec - $400</option>
+                <option value="500">Monterrey Poniente (Cumbres, San Jerónimo) - $500</option>
+                <option value="400">San Nicolás (Zona La Fe / Puentes) - $400</option>
             </optgroup>
         </select>
+        <small style="font-size: 11px; color: #555;">*El costo del flete se calcula basado en la distancia desde nuestra base en Valle Sur, Juárez.</small>
     </div>
 
     <div class="form-group">
@@ -152,8 +138,8 @@
 <footer>
     <div class="footer-grid">
         <div class="footer-item">
-            <h3>Nuestra Empresa</h3>
-            <p>En G-A-P nos enfocamos en proporcionar soluciones reales para la construcción con equipo de alto rendimiento y mantenimiento constante.</p>
+            <h3>G-A-P Renta de Rompedoras</h3>
+            <p>Especialistas en brindarle la potencia necesaria para sus proyectos de demolición y compactación.</p>
         </div>
         <div class="footer-item">
             <h3>Horarios de Atención</h3>
@@ -182,7 +168,7 @@
         const eNom = eSelect.options[eSelect.selectedIndex].text;
         
         if(!nom || zonaSel.value == "0") {
-            alert("Por favor completa tu nombre y selecciona tu zona.");
+            alert("Por favor completa tu nombre y selecciona tu ubicación.");
             return;
         }
 
@@ -192,7 +178,7 @@
 
         document.getElementById('res-detalles').innerHTML = `
             <b>Cliente:</b> ${nom}<br>
-            <b>Zona:</b> ${zonaNom}<br>
+            <b>Ubicación:</b> ${zonaNom}<br>
             <b>Equipo:</b> ${eNom}<br>
             <b>Días de renta:</b> ${d}<br><br>
             <b>Costo Renta:</b> $${rentaTotal}<br>
@@ -203,7 +189,7 @@
 
         const mensajeWA = `*SOLICITUD DE RENTA G-A-P*\n\n` +
             `*Cliente:* ${nom}\n` +
-            `*Zona:* ${zonaNom}\n` +
+            `*Ubicación:* ${zonaNom}\n` +
             `*Dirección:* ${dir}\n` +
             `*Equipo:* ${eNom}\n` +
             `*Días:* ${d}\n` +
