@@ -46,7 +46,7 @@
 
 <section class="hero">
     <h2>Líderes en Renta de Rompedoras y Vibradores de Concreto</h2>
-    <p>Especialistas en Maquinaria: Potencia y Puntualidad en su Obra.</p>
+    <p>Maquinaria Profesional para Construcción. Equipos Listos para su Obra.</p>
 </section>
 
 <div class="cotizador-container" id="form-pedidos">
@@ -56,32 +56,33 @@
     </div>
     
     <div class="form-group">
-        <label>Ubicación de la Obra (Municipio y Zona):</label>
+        <label>Municipio / Zona de Obra:</label>
         <select id="zona">
-            <option value="0" disabled selected>-- Seleccione Ubicación --</option>
-            <optgroup label="JUÁREZ (Base Valle Sur)">
-                <option value="200">Todo Juárez - $200</option>
+            <option value="0" disabled selected>-- Seleccione su Ubicación --</option>
+            <optgroup label="ZONA 1 (Proximidad Directa)">
+                <option value="200">Juárez (Todas las colonias)</option>
+                <option value="200">Guadalupe (Dos Ríos, Paseo Gpe, Eloy Cavazos)</option>
             </optgroup>
-            <optgroup label="GUADALUPE">
-                <option value="250">Guadalupe Zona Oriente (Dos Ríos, Eloy Cavazos) - $250</option>
-                <option value="350">Guadalupe Zona Poniente (Contry, Lindavista) - $350</option>
+            <optgroup label="ZONA 2 (Intermedia)">
+                <option value="300">Apodaca (Huinalá, Pueblo Nuevo, Centro)</option>
+                <option value="300">Guadalupe (Lindavista, La Pastora, Contry)</option>
+                <option value="300">San Nicolás (La Fe, Anillo Periférico)</option>
             </optgroup>
-            <optgroup label="APODACA">
-                <option value="300">Apodaca Sur (Huinalá, Pueblo Nuevo) - $300</option>
-                <option value="400">Apodaca Centro / Norte (Santa Rosa) - $400</option>
+            <optgroup label="ZONA 3 (Extendida)">
+                <option value="400">Monterrey (Centro, Zona Tec)</option>
+                <option value="400">San Nicolás (Universidad, Las Puentes, Sendero)</option>
+                <option value="400">Pesquería</option>
             </optgroup>
-            <optgroup label="MONTERREY / SAN NICOLÁS">
-                <option value="400">Monterrey Centro / Zona Tec - $400</option>
-                <option value="500">Monterrey Poniente (Cumbres, San Jerónimo) - $500</option>
-                <option value="400">San Nicolás (Zona La Fe / Puentes) - $400</option>
+            <optgroup label="ZONA 4 (Especial)">
+                <option value="500">Monterrey (Cumbres, San Jerónimo, San Pedro)</option>
+                <option value="500">Escobedo / García (Sectores lejanos)</option>
             </optgroup>
         </select>
-        <small style="font-size: 11px; color: #555;">*El costo del flete se calcula basado en la distancia desde nuestra base en Valle Sur, Juárez.</small>
     </div>
 
     <div class="form-group">
         <label>Dirección exacta (Calle y Número):</label>
-        <input type="text" id="direccion" placeholder="Ej. Calle Roble #123, Col. Las Lomas">
+        <input type="text" id="direccion" placeholder="Ej. Calle Pino #123, Col. Real de Juárez">
     </div>
 
     <div class="form-group">
@@ -107,31 +108,30 @@
     <button class="btn-calcular" onclick="mostrarResumen()">Calcular Presupuesto</button>
 
     <div id="res-box">
-        <h3 style="margin:0; text-transform:uppercase; color:#002752;">Resumen de Cotización</h3>
+        <h3 style="margin:0; text-transform:uppercase; color:#002752;">Confirmación de Pedido</h3>
         <p id="res-detalles" style="line-height:1.6;"></p>
         <hr>
-        <h2 style="margin:0; color:#002752;">TOTAL A PAGAR: $<span id="res-total"></span></h2>
+        <h2 style="margin:0; color:#002752;">COSTO TOTAL: $<span id="res-total"></span></h2>
         
         <div class="botones-confirmar">
-            <a href="#" id="wa-link" class="btn-confirmar" target="_blank">ACEPTAR</a>
+            <a href="#" id="wa-link" class="btn-confirmar" target="_blank">ACEPTAR Y ENVIAR</a>
             <button class="btn-rechazar" onclick="rechazarPedido()">RECHAZAR</button>
         </div>
     </div>
 </div>
 
 <section class="seccion-equipos">
-    <h2 style="text-align:center; text-transform:uppercase;">Nuestra Maquinaria</h2>
+    <h2 style="text-align:center; text-transform:uppercase;">Maquinaria Disponible</h2>
     <div class="grid">
-        <div class="card"><h4>Rompedora 8kg</h4><img src="8.jpg"><p>Ideal para ranuras y demolición de muros ligeros.</p><a href="#form-pedidos" class="btn-ir-cotizar">Cotizar</a></div>
-        <div class="card"><h4>Rompedora 12kg</h4><img src="12.jpg"><p>Retiro de azulejo y demolición de pisos delgados.</p><a href="#form-pedidos" class="btn-ir-cotizar">Cotizar</a></div>
-        <div class="card"><h4>Rompedora 15kg</h4><img src="15.jpg"><p>Potencia para muros de concreto y vigas.</p><a href="#form-pedidos" class="btn-ir-cotizar">Cotizar</a></div>
-        <div class="card"><h4>Rompedora 25kg</h4><img src="25.jpg"><p>Especialista en banquetas y pisos firmes.</p><a href="#form-pedidos" class="btn-ir-cotizar">Cotizar</a></div>
-        <div class="card"><h4>Rompedora 27kg</h4><img src="27.jpg"><p>Máximo poder: Asfalto y losas industriales.</p><a href="#form-pedidos" class="btn-ir-cotizar">Cotizar</a></div>
-        
-        <div class="card"><h4>Vibrador CAT</h4><img src="Vibrador.jpg"><p>Alta potencia para compactación profunda en losas.</p><a href="#form-pedidos" class="btn-ir-cotizar">Cotizar</a></div>
-        <div class="card"><h4>Vibrador V1</h4><img src="vibrador1.jpg"><p>Diseño portátil ideal para castillos y columnas.</p><a href="#form-pedidos" class="btn-ir-cotizar">Cotizar</a></div>
-        <div class="card"><h4>Vibrador V2</h4><img src="vibrador2.jpg"><p>Motor reforzado para uso continuo en obra.</p><a href="#form-pedidos" class="btn-ir-cotizar">Cotizar</a></div>
-        <div class="card"><h4>Vibrador V3</h4><img src="vibrador3.jpg"><p>Cabezal de alta frecuencia para acabados finos.</p><a href="#form-pedidos" class="btn-ir-cotizar">Cotizar</a></div>
+        <div class="card"><h4>Rompedora 8kg</h4><img src="8.jpg"><p>Demolición ligera y ranurado.</p><a href="#form-pedidos" class="btn-ir-cotizar">Cotizar</a></div>
+        <div class="card"><h4>Rompedora 12kg</h4><img src="12.jpg"><p>Retiro de pisos y azulejos.</p><a href="#form-pedidos" class="btn-ir-cotizar">Cotizar</a></div>
+        <div class="card"><h4>Rompedora 15kg</h4><img src="15.jpg"><p>Potencia para concreto reforzado.</p><a href="#form-pedidos" class="btn-ir-cotizar">Cotizar</a></div>
+        <div class="card"><h4>Rompedora 25kg</h4><img src="25.jpg"><p>Uso rudo en banquetas y firmes.</p><a href="#form-pedidos" class="btn-ir-cotizar">Cotizar</a></div>
+        <div class="card"><h4>Rompedora 27kg</h4><img src="27.jpg"><p>Poder industrial para asfalto.</p><a href="#form-pedidos" class="btn-ir-cotizar">Cotizar</a></div>
+        <div class="card"><h4>Vibrador CAT</h4><img src="Vibrador.jpg"><p>Compactación profunda de concreto.</p><a href="#form-pedidos" class="btn-ir-cotizar">Cotizar</a></div>
+        <div class="card"><h4>Vibrador V1</h4><img src="vibrador1.jpg"><p>Diseño compacto y eficiente.</p><a href="#form-pedidos" class="btn-ir-cotizar">Cotizar</a></div>
+        <div class="card"><h4>Vibrador V2</h4><img src="vibrador2.jpg"><p>Reforzado para uso continuo.</p><a href="#form-pedidos" class="btn-ir-cotizar">Cotizar</a></div>
+        <div class="card"><h4>Vibrador V3</h4><img src="vibrador3.jpg"><p>Alta frecuencia para acabados.</p><a href="#form-pedidos" class="btn-ir-cotizar">Cotizar</a></div>
     </div>
 </section>
 
@@ -139,19 +139,15 @@
     <div class="footer-grid">
         <div class="footer-item">
             <h3>G-A-P Renta de Rompedoras</h3>
-            <p>Especialistas en brindarle la potencia necesaria para sus proyectos de demolición y compactación.</p>
+            <p>Soluciones integrales de maquinaria. Puntualidad y equipos en excelente estado.</p>
         </div>
         <div class="footer-item">
-            <h3>Horarios de Atención</h3>
-            <p>
-                <b>Lunes a Viernes:</b> 8:00 AM - 8:00 PM<br>
-                <b>Sábados:</b> 9:00 AM - 5:00 PM<br>
-                <b>Domingos:</b> 9:00 AM - 2:00 PM
-            </p>
+            <h3>Horarios</h3>
+            <p>Lun-Vie: 8AM-8PM | Sab: 9AM-5PM | Dom: 9AM-2PM</p>
         </div>
         <div class="footer-item">
-            <h3>Contacto</h3>
-            <p>WhatsApp: 8119988053<br>Base Logística: Valle Sur, Juárez, NL.</p>
+            <h3>Ubicación</h3>
+            <p>Base Valle Sur, Juárez, Nuevo León.<br>WhatsApp: 8119988053</p>
         </div>
     </div>
 </footer>
@@ -176,27 +172,28 @@
         const rentaTotal = costoRentaIndividual * d;
         const total = rentaTotal + flete;
 
+        // EL CLIENTE SOLO VE EL TOTAL DE RENTA (INCLUYENDO FLETE)
         document.getElementById('res-detalles').innerHTML = `
             <b>Cliente:</b> ${nom}<br>
             <b>Ubicación:</b> ${zonaNom}<br>
-            <b>Equipo:</b> ${eNom}<br>
-            <b>Días de renta:</b> ${d}<br><br>
-            <b>Costo Renta:</b> $${rentaTotal}<br>
-            <b>Costo Flete:</b> $${flete}
+            <b>Equipo Solicitado:</b> ${eNom}<br>
+            <b>Tiempo de Renta:</b> ${d} día(s)<br>
+            <b>Servicio de Entrega:</b> Incluido en el total
         `;
         document.getElementById('res-total').innerText = total;
         document.getElementById('res-box').style.display = 'block';
 
-        const mensajeWA = `*SOLICITUD DE RENTA G-A-P*\n\n` +
+        // PARA TU WHATSAPP EL DESGLOSE SÍ LLEGA COMPLETO PARA TU CONTROL
+        const mensajeWA = `*NUEVO PEDIDO G-A-P*\n\n` +
             `*Cliente:* ${nom}\n` +
-            `*Ubicación:* ${zonaNom}\n` +
+            `*Zona:* ${zonaNom}\n` +
             `*Dirección:* ${dir}\n` +
             `*Equipo:* ${eNom}\n` +
             `*Días:* ${d}\n` +
             `--------------------------\n` +
-            `*Costo Renta:* $${rentaTotal}\n` +
-            `*Costo Flete:* $${flete}\n` +
-            `*TOTAL: $${total}*`;
+            `*Subtotal Renta:* $${rentaTotal}\n` +
+            `*Flete Interno:* $${flete}\n` +
+            `*TOTAL A COBRAR: $${total}*`;
 
         document.getElementById('wa-link').href = `https://wa.me/528119988053?text=` + encodeURIComponent(mensajeWA);
         window.location.hash = '#res-box';
