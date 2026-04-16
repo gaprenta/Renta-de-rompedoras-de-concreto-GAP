@@ -11,7 +11,7 @@
         .header-logo-img { width: 100%; max-width: 1200px; height: auto; display: block; margin: 0 auto; }
         
         .hero { background: #002752; color: #fff; padding: 40px 20px; text-align: center; }
-        .hero h2 { color: #FFCD00; margin: 0; text-transform: uppercase; font-size: 24px; } /* Slogan más pequeño */
+        .hero h2 { color: #FFCD00; margin: 0; text-transform: uppercase; font-size: 24px; }
         .hero p { margin: 8px 0 0; font-size: 16px; font-family: 'Arial', sans-serif; font-weight: bold; color: #f4f4f4; }
 
         .seccion-empresa { max-width: 1000px; margin: 40px auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; font-family: 'Arial', sans-serif; }
@@ -29,7 +29,6 @@
         
         #res-box { margin-top: 20px; padding: 20px; background: #fff; border: 4px solid #002752; display: none; border-radius: 10px; }
         
-        /* Botones de colores Verde y Rojo */
         .botones-confirmar { display: flex; gap: 10px; margin-top: 15px; }
         .btn-confirmar { flex: 1; background: #25D366; color: white; padding: 15px; text-decoration: none; text-align: center; border-radius: 5px; font-weight: bold; text-transform: uppercase; }
         .btn-rechazar { flex: 1; background: #FF3B30; color: white; padding: 15px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
@@ -37,7 +36,7 @@
         .seccion-equipos { padding: 50px 20px; max-width: 1200px; margin: 0 auto; background: #fafafa; }
         .seccion-equipos h2 { text-align: center; text-transform: uppercase; color: #002752; margin-bottom: 40px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-        .card { border: 3px solid #002752; display: flex; flex-direction: column; text-align: center; background: #fff; transition: transform 0.2s; }
+        .card { border: 3px solid #002752; display: flex; flex-direction: column; text-align: center; background: #fff; }
         .card img { width: 100%; height: 200px; object-fit: contain; padding: 10px; background: #fff; }
         .card h4 { background: #002752; color: #FFCD00; margin: 0; padding: 12px; text-transform: uppercase; font-size: 14px; }
         .card p { font-family: 'Arial', sans-serif; padding: 10px; font-size: 13px; font-weight: bold; flex-grow: 1; margin: 0; color: #444; }
@@ -170,11 +169,31 @@
 
 <script>
     const baseZonas = [
-        { palabras: ["valle sur", "san roque", "santa monica", "anzures", "villas de san jose", "juarez centro", "real de juarez", "acueducto", "los puertos"], zona: "Juárez (Cercano)", costo: 200 },
-        { palabras: ["tres caminos", "coahuila", "xochimilco", "dos rios", "el porvenir", "paseo gpe", "eloy cavazos", "villas de san miguel"], zona: "Guadalupe Oriente", costo: 250 },
-        { palabras: ["la pastora", "vivienda popular", "expo", "estadio", "tolteca", "lindavista", "contry", "huinala", "pueblo nuevo"], zona: "Guadalupe / Apodaca Sur", costo: 300 },
-        { palabras: ["san nicolas", "centro de apodaca", "la fe", "las puentes", "universidad", "mty centro", "zona tec"], zona: "San Nicolás / Monterrey Centro", costo: 400 },
-        { palabras: ["cumbres", "san jeronimo", "santa catarina", "garcia", "san pedro", "carretera nacional", "escobedo"], zona: "Zonas Extendidas", costo: 550 }
+        { 
+            // RADIO HASTA 15KM (COSTO 200)
+            palabras: ["valle sur", "san roque", "santa monica", "anzures", "villas de san jose", "juarez centro", "real de juarez", "acueducto", "los puertos", "terranova", "ex hacienda", "pueblo nuevo", "huinala", "tres caminos", "eloy cavazos", "pablo livas", "guadalupe centro", "dos rios", "faisanes"], 
+            zona: "Radio 15km (Local)", costo: 200 
+        },
+        { 
+            // RADIO 20KM (COSTO 300)
+            palabras: ["la pastora", "lindavista", "vivienda popular", "la fe", "centro de apodaca", "expo", "estadio", "santa maria", "san miguel"], 
+            zona: "Radio 20km", costo: 300 
+        },
+        { 
+            // RADIO 25KM (COSTO 375)
+            palabras: ["san nicolas center", "las puentes", "universidad", "anahuac", "cuauhtemoc", "mty centro", "zona tec", "obispado", "santa rosa", "metroplex"], 
+            zona: "Radio 25km", costo: 375 
+        },
+        { 
+            // RADIO 30KM (COSTO 450)
+            palabras: ["mitras", "san bernabe", "solidaridad", "san jeronimo", "san pedro", "valle oriente", "la estanzuela", "escobedo centro"], 
+            zona: "Radio 30km", costo: 450 
+        },
+        { 
+            // RADIO 35KM (COSTO 500)
+            palabras: ["cumbres", "santa catarina", "garcia", "dominio", "carretera nacional", "el uro", "santiago", "puerta de hierro"], 
+            zona: "Radio 35km", costo: 500 
+        }
     ];
 
     function detectarZona() {
@@ -199,16 +218,16 @@
         }
 
         if (zonaEncontrada) {
-            infoZona.innerText = "✓ Ubicación Identificada: " + zonaEncontrada.zona;
+            infoZona.innerText = "✓ Distancia: " + zonaEncontrada.zona;
             infoZona.style.background = "#25D366"; 
             infoZona.style.color = "#fff";
             fleteInput.value = zonaEncontrada.costo;
             nombreZonaInput.value = zonaEncontrada.zona;
         } else {
-            infoZona.innerText = "Calculando flete por distancia...";
+            infoZona.innerText = "Ajustando flete por radio de distancia...";
             infoZona.style.background = "#FFCD00";
             infoZona.style.color = "#000";
-            fleteInput.value = 350; 
+            fleteInput.value = 375; // Flete promedio si no se identifica exacto
         }
     }
 
